@@ -9,6 +9,7 @@
 import UIKit
 
 struct User: Codable {
-    var uid: String?
-    var userName: String?
+//    let uid: Int32?
+    let userName: String?
+    let schoolName: String?
 }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */; };
 		4B25F68E215A30CC009FA1B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F68D215A30CC009FA1B6 /* User.swift */; };
-		4B25F690215A3415009FA1B6 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F68F215A3415009FA1B6 /* ApiResponse.swift */; };
+		4B298EE7215B7E090099C98A /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B298EE6215B7E090099C98A /* HomeCell.swift */; };
 		4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C67A1215A076400A598E7 /* NetworkClient.swift */; };
 		4BC35313215A01E10079FE6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC35312215A01E10079FE6E /* AppDelegate.swift */; };
 		4BC35318215A01E10079FE6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC35316215A01E10079FE6E /* Main.storyboard */; };
@@ -23,7 +23,7 @@
 /* Begin PBXFileReference section */
 		4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiBaseClient.swift; sourceTree = "<group>"; };
 		4B25F68D215A30CC009FA1B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		4B25F68F215A3415009FA1B6 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		4B298EE6215B7E090099C98A /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		4B4C67A1215A076400A598E7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		4BC3530F215A01E10079FE6E /* NodejsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodejsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC35312215A01E10079FE6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				4BC35326215A02DE0079FE6E /* HomeViewController.swift */,
+				4B298EE6215B7E090099C98A /* HomeCell.swift */,
 				4B25F68D215A30CC009FA1B6 /* User.swift */,
 			);
 			path = Home;
@@ -82,7 +83,6 @@
 				4B4C67A1215A076400A598E7 /* NetworkClient.swift */,
 				4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */,
 				4BC35328215A088E0079FE6E /* URLs.swift */,
-				4B25F68F215A3415009FA1B6 /* ApiResponse.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -232,9 +232,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC35313215A01E10079FE6E /* AppDelegate.swift in Sources */,
+				4B298EE7215B7E090099C98A /* HomeCell.swift in Sources */,
 				4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */,
 				4B25F68E215A30CC009FA1B6 /* User.swift in Sources */,
-				4B25F690215A3415009FA1B6 /* ApiResponse.swift in Sources */,
 				4BC35327215A02DE0079FE6E /* HomeViewController.swift in Sources */,
 				4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */,
 				4BC35329215A088E0079FE6E /* URLs.swift in Sources */,

@@ -24,7 +24,7 @@ class ApiBaseClient: NSObject {
             case .success:
                 //当响应成功是，使用临时变量value接受服务器返回的信息并判断是否为[String: AnyObject]类型 如果是那么将其传给其定义方法中的success
                 if let value = response.result.value as? [String:AnyObject]{
-                    success(value)
+                    self.handle(response: value, success: success, failure: failure)
                 }
                 
             case .failure(let error):
@@ -46,7 +46,7 @@ class ApiBaseClient: NSObject {
             case .success:
                 //当响应成功是，使用临时变量value接受服务器返回的信息并判断是否为[String: AnyObject]类型 如果是那么将其传给其定义方法中的success
                 if let value = response.result.value as? [String:AnyObject]{
-                    success(value)
+                    self.handle(response: value, success: success, failure: failure)
                 }
                 
             case .failure(let error):
@@ -55,6 +55,13 @@ class ApiBaseClient: NSObject {
             }
             
         }
+    }
+    
+    func handle(response: [String: AnyObject],
+                success:@escaping(_ response:[String:AnyObject])->(),
+                failure:@escaping(_ error:Error)->()) {
+        // 此处预留做对code或者msg的全局统一处理
+        success(response)
     }
     
 }

@@ -10,38 +10,81 @@ import UIKit
 
 class HomeViewController: UITableViewController {
     
-    var notes: [[String: String]]?
+    var users: [User] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        NetworkClient().getRecords(success: { (response) in
-            
+        self.setupNavigationRightItem()
+        
+        NetworkClient.getRecords(success: { (userInfo) in
+            self.users = userInfo
+            self.tableView.reloadData()
         }) { (error) in
             
         }
+    }
+    
+    
+    func setupNavigationRightItem() {
+        let addItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addAction))
+        self.navigationItem.rightBarButtonItem = addItem
+    }
+    
+    @objc func addAction() {
+        let alertController = UIAlertController.init(title: "提示", message: nil, preferredStyle: .alert)
+        alertController.addTextField { (textField) in
+            textField.placeholder = "请输入姓名"
+        }
+        alertController.addTextField { (textField) in
+            textField.placeholder = "请输入学校名称"
+        }
+        alertController.addAction(UIAlertAction.init(title: "确定", style: .default, handler: { (action) in
+            guard let userName = alertController.textFields?.first?.text else {
+                return
+            }
+            guard let schoolName = alertController.textFields?.last?.text else {
+                return
+            }
+            let params = ["userName": userName, "schoolName": schoolName]
+            NetworkClient.addRecord(params: params, success: { (response) in
+                if let code = response["code"] as? Int32, code == 200 {
+                    guard let data = try? JSONSerialization.data(withJSONObject: params) else {
+                        return
+                    }
+                    guard let user = try? JSONDecoder().decode(User.self, from: data) else {
+                        return
+                    }
+                    self.users.insert(user, at: 0)
+                    self.tableView.reloadData()
+                }
+            }, failure: { (error) in
+                
+            })
+        }))
+        self.present(alertController, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 10
+        return users.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row)"
+        let userInfo = users[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! HomeCell
+        cell.userNameLabel.text = userInfo.userName
+        cell.schoolNameLabel.text = userInfo.schoolName
         
         return cell
     }
