@@ -30,4 +30,9 @@ class NetworkClient: NSObject {
     class func addRecord(params:[String: String] ,success:@escaping(_ response:[String: AnyObject])->(),failure:@escaping(_ error:Error)->()) {
         ApiBaseClient.shareInstance.postRequest(urlString: URLs.addRecord, params: params, success: success, failure: failure)
     }
+    
+    class func deleteRecord(params:[String: Int32] ,success:@escaping(_ response:[String: AnyObject])->(),failure:@escaping(_ error:Error)->()) {
+        ApiBaseClient.shareInstance.deleteRequest(urlString: URLs.deleteRecord, params: params, success: success, failure: failure)
+    }
+
 }

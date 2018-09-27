@@ -1,3 +1,4 @@
+
 var express = require("express");
 var router = express.Router();
 
@@ -27,7 +28,7 @@ var sqlOperation = function(queryString, paramArr, res, ret) {
       if (result) {
         result = {
           code: 200,
-          msg: "增加成功",
+          msg: "操作成功",
           data: result
         };
       }
@@ -40,15 +41,22 @@ var sqlOperation = function(queryString, paramArr, res, ret) {
   });
 };
 
-// 添加用户
-router.post("/addRecord", function(req, res, next) {
-    var param = req.body;
-    sqlOperation(userSQL.insert, [param.userName, param.schoolName], res)
+// 获取所有用户信息
+router.get("/allRecords", function(req, res, next) {
+  sqlOperation(userSQL.queryAll, null, res)
 });
 
 // 添加用户
-router.get("/allRecords", function(req, res, next) {
-  sqlOperation(userSQL.queryAll, null, res)
+router.post("/addRecord", function(req, res, next) {
+    var param = req.body;
+    var moment = require('moment');
+    var nowDate = moment().format('YYYY-MM-DD HH:mm:ss');
+    sqlOperation(userSQL.insert, [param.userName, param.schoolName, nowDate], res)
+});
+
+router.delete("/deleteRecord", function(req, res, next) {
+  var param = req.query;
+  sqlOperation(userSQL.delete, [param.uid], res)
 });
 
 module.exports = router;

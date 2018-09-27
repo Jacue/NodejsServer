@@ -15,8 +15,12 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setupNavigationRightItem()
+        self.setupNavigationItems()
         
+        self.getRecords()
+    }
+    
+    func getRecords() {
         NetworkClient.getRecords(success: { (userInfo) in
             self.users = userInfo
             self.tableView.reloadData()
@@ -25,10 +29,24 @@ class HomeViewController: UITableViewController {
         }
     }
     
+    func deleteRecord(by uid: Int32) {
+        NetworkClient.deleteRecord(params: ["uid": uid], success: { (response) in
+            
+        }, failure: { (error) in
+            
+        })
+    }
     
-    func setupNavigationRightItem() {
+    func setupNavigationItems() {
+        let sortItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.organize, target: self, action: #selector(sortRecords))
+        self.navigationItem.leftBarButtonItem = sortItem
+
         let addItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addAction))
         self.navigationItem.rightBarButtonItem = addItem
+    }
+    
+    @objc func sortRecords() {
+        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
     }
     
     @objc func addAction() {
@@ -49,14 +67,7 @@ class HomeViewController: UITableViewController {
             let params = ["userName": userName, "schoolName": schoolName]
             NetworkClient.addRecord(params: params, success: { (response) in
                 if let code = response["code"] as? Int32, code == 200 {
-                    guard let data = try? JSONSerialization.data(withJSONObject: params) else {
-                        return
-                    }
-                    guard let user = try? JSONDecoder().decode(User.self, from: data) else {
-                        return
-                    }
-                    self.users.insert(user, at: 0)
-                    self.tableView.reloadData()
+                    self.getRecords()
                 }
             }, failure: { (error) in
                 
@@ -94,12 +105,18 @@ class HomeViewController: UITableViewController {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            let userInfo = users[indexPath.row]
+            if let uid = userInfo.uid {
+                users.remove(at: indexPath.row)
+                self.deleteRecord(by: uid)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
