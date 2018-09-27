@@ -40,10 +40,10 @@ class HomeViewController: UITableViewController {
             textField.placeholder = "请输入学校名称"
         }
         alertController.addAction(UIAlertAction.init(title: "确定", style: .default, handler: { (action) in
-            guard let userName = alertController.textFields?.first?.text else {
+            guard let userName = alertController.textFields?.first?.text, userName.count > 0 else {
                 return
             }
-            guard let schoolName = alertController.textFields?.last?.text else {
+            guard let schoolName = alertController.textFields?.last?.text, schoolName.count > 0 else {
                 return
             }
             let params = ["userName": userName, "schoolName": schoolName]

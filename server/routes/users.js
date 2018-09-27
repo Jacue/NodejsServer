@@ -41,10 +41,9 @@ var sqlOperation = function(queryString, paramArr, res, ret) {
 };
 
 // 添加用户
-router.get("/addUser", function(req, res, next) {
-    // 获取前台页面传过来的参数
-    var param = req.query || req.params;
-    sqlOperation(userSQL.insert, [param.uid, param.name], res)
+router.post("/addRecord", function(req, res, next) {
+    var param = req.body;
+    sqlOperation(userSQL.insert, [param.userName, param.schoolName], res)
 });
 
 // 添加用户
