@@ -9,8 +9,9 @@
 import UIKit
 
 class URLs: NSObject {
-    static let baseUrl = "http://99.48.98.235:3001/users/"
+    static let baseUrl = "http://99.48.98.129:3001/users/"
     static let records = "allRecords"
     static let addRecord = "addRecord"
     static let deleteRecord = "deleteRecord"
+    static let exchangeRecord = "exchangeRecord"
 }

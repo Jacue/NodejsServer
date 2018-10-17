@@ -125,6 +125,14 @@ class HomeViewController: UITableViewController {
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
+        let fromIndex = fromIndexPath.row
+        let toIndex = to.row
+        let param = ["fromIndex": fromIndex, "toIndex": toIndex]
+        NetworkClient.updateRecordIndex(params: param, success: { (response) in
+            
+        }) { (error) in
+            
+        }
     }
 
     // Override to support conditional rearranging of the table view.
