@@ -16,20 +16,28 @@ class HomeViewController: UITableViewController {
         super.viewDidLoad()
 
         self.setupNavigationItems()
+        self.setupRefreshControl()
         
         self.getRecords()
     }
     
-    func getRecords() {
+    @objc func getRecords() {
+        if let _ = self.refreshControl?.isRefreshing {
+            self.refreshControl?.attributedTitle = NSAttributedString.init(string: "加载中...")
+        }
         NetworkClient.getRecords(success: { (userInfo) in
             self.users = userInfo
             self.tableView.reloadData()
+            self.refreshControl?.endRefreshing()
+            self.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         }) { (error) in
-            
+            self.refreshControl?.endRefreshing()
+            self.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         }
     }
     
     func deleteRecord(by uid: Int32) {
+        
         NetworkClient.deleteRecord(params: ["uid": uid], success: { (response) in
             
         }, failure: { (error) in
@@ -43,6 +51,13 @@ class HomeViewController: UITableViewController {
 
         let addItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addAction))
         self.navigationItem.rightBarButtonItem = addItem
+    }
+    
+    func setupRefreshControl() {
+        let refreshControl = UIRefreshControl.init()
+        refreshControl.attributedTitle = NSAttributedString.init(string: "下拉刷新")
+        refreshControl.addTarget(self, action: #selector(getRecords), for: .valueChanged)
+        self.refreshControl = refreshControl
     }
     
     @objc func sortRecords() {
