@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import FoldingCell
 
-class HomeCell: UITableViewCell {
-
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var schoolNameLabel: UILabel!
+class HomeCell: FoldingCell {
     
     override func awakeFromNib() {
+        foregroundView.layer.cornerRadius = 4
+        foregroundView.layer.masksToBounds = true
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

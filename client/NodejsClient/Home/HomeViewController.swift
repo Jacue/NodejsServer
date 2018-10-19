@@ -7,26 +7,38 @@
 //
 
 import UIKit
+import FoldingCell
+import SnapKit
 
 class HomeViewController: UITableViewController {
     
     var users: [User] = []
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        self.setupNavigationItems()
-        self.setupRefreshControl()
-        
-        self.getRecords()
+    
+    enum Const {
+        static let closeCellHeight: CGFloat = 179
+        static let openCellHeight: CGFloat = 488
     }
     
+    var cellHeights: [CGFloat] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setupActionItems()
+        self.configTableView()
+        self.getRecords()
+        
+        
+    }
+    
+    // MARK: ===== Data Request =====
     @objc func getRecords() {
         if let _ = self.refreshControl?.isRefreshing {
             self.refreshControl?.attributedTitle = NSAttributedString.init(string: "加载中...")
         }
         NetworkClient.getRecords(success: { (userInfo) in
             self.users = userInfo
+            self.cellHeights = Array(repeating: Const.closeCellHeight, count: self.users.count)
             self.tableView.reloadData()
             self.refreshControl?.endRefreshing()
             self.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
@@ -36,8 +48,11 @@ class HomeViewController: UITableViewController {
         }
     }
     
+    
+    /// 删除数据
+    ///
+    /// - Parameter uid: 记录的唯一标识id
     func deleteRecord(by uid: Int32) {
-        
         NetworkClient.deleteRecord(params: ["uid": uid], success: { (response) in
             
         }, failure: { (error) in
@@ -45,21 +60,38 @@ class HomeViewController: UITableViewController {
         })
     }
     
-    func setupNavigationItems() {
+    // MARK: ===== UI Config =====
+    func setupActionItems() {
         let sortItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.organize, target: self, action: #selector(sortRecords))
         self.navigationItem.leftBarButtonItem = sortItem
 
-        let addItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.add, target: self, action: #selector(addAction))
-        self.navigationItem.rightBarButtonItem = addItem
+        let addItem = UIButton.init(type: .custom)
+        addItem.setImage(#imageLiteral(resourceName: "add.png"), for: .normal)
+        addItem.layer.cornerRadius = 15
+        addItem.layer.masksToBounds = true
+        addItem.addTarget(self, action: #selector(addAction), for: .touchUpInside)
+        self.view.addSubview(addItem)
+        self.view.bringSubviewToFront(addItem)
+        
+        addItem.snp.makeConstraints { (make) in
+            make.width.height.equalTo(30)
+            make.centerX.equalTo(self.view)
+            make.bottom.equalTo(self.view).offset(50)
+        }
     }
     
-    func setupRefreshControl() {
+    func configTableView() {
+        tableView.estimatedRowHeight = Const.closeCellHeight
+        tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background.png"))
+
         let refreshControl = UIRefreshControl.init()
         refreshControl.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         refreshControl.addTarget(self, action: #selector(getRecords), for: .valueChanged)
         self.refreshControl = refreshControl
     }
     
+    // MARK: ===== Action =====
     @objc func sortRecords() {
         self.tableView.setEditing(!self.tableView.isEditing, animated: true)
     }
@@ -103,18 +135,60 @@ class HomeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return cellHeights[indexPath.row]
+    }
+    
+    override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard case let cell as HomeCell  = cell else {
+            return
+        }
+        
+        cell.backgroundColor = .clear
+        
+        if cellHeights[indexPath.row] == Const.closeCellHeight {
+            cell.unfold(false, animated: false, completion: nil)
+        } else {
+            cell.unfold(true, animated: false, completion: nil)
+        }
     }
 
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let userInfo = users[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! HomeCell
-        cell.userNameLabel.text = userInfo.userName
-        cell.schoolNameLabel.text = userInfo.schoolName
-        
+//        let userInfo = users[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCell
+        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+        cell.durationsForExpandedState = durations
+        cell.durationsForCollapsedState = durations
+
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! HomeCell
+        
+        if cell.isAnimating() {
+            return
+        }
+        
+        var duration = 0.0
+        let cellIsCollapsed = cellHeights[indexPath.row] == Const.closeCellHeight
+        if cellIsCollapsed {
+            cellHeights[indexPath.row] = Const.openCellHeight
+            cell.unfold(true, animated: true, completion: nil)
+            duration = 0.5
+        } else {
+            cellHeights[indexPath.row] = Const.closeCellHeight
+            cell.unfold(false, animated: true, completion: nil)
+            duration = 0.8
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
+    }
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
