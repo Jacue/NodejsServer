@@ -20,7 +20,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Home View Controller-->
+        <!--首页-->
         <scene sceneID="Lr5-bO-Jww">
             <objects>
                 <viewController id="86n-qR-114" customClass="HomeViewController" customModule="NodejsClient" customModuleProvider="target" sceneMemberID="viewController">
@@ -716,7 +716,7 @@
                             <constraint firstItem="FTG-fT-PMn" firstAttribute="top" secondItem="JwA-oN-nPx" secondAttribute="bottom" id="f1M-lG-nY2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1aK-B1-BNg"/>
+                    <navigationItem key="navigationItem" title="首页" id="1aK-B1-BNg"/>
                     <size key="freeformSize" width="600" height="808"/>
                     <connections>
                         <outlet property="tableView" destination="FTG-fT-PMn" id="8qz-TD-UUd"/>

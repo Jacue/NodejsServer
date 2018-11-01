@@ -28,8 +28,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.setupActionItems()
         self.configTableView()
         self.getRecords()
-        
-        
     }
     
     // MARK: ===== Data Request =====
@@ -67,7 +65,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationItem.leftBarButtonItem = sortItem
 
         let addItem = UIButton.init(type: .custom)
-        addItem.setImage(#imageLiteral(resourceName: "add.png"), for: .normal)
+        addItem.setImage(UIImage.init(named: "add"), for: .normal)
+        addItem.backgroundColor = UIColor.white
         addItem.layer.cornerRadius = 15
         addItem.layer.masksToBounds = true
         addItem.addTarget(self, action: #selector(addAction), for: .touchUpInside)
@@ -75,16 +74,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.view.bringSubviewToFront(addItem)
         
         addItem.snp.makeConstraints { (make) in
-            make.width.height.equalTo(30)
+            make.width.height.equalTo(40)
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(self.view).offset(50)
+            make.bottom.equalTo(self.view).offset(-20)
         }
     }
     
     func configTableView() {
         tableView.estimatedRowHeight = Const.closeCellHeight
         tableView.rowHeight = UITableView.automaticDimension
-        self.tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background.png"))
+        self.tableView.backgroundColor = UIColor(patternImage: UIImage.init(named: "background")!)
 
         let refreshControl = UIRefreshControl.init()
         refreshControl.attributedTitle = NSAttributedString.init(string: "下拉刷新")
@@ -155,7 +154,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let userInfo = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCell
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
