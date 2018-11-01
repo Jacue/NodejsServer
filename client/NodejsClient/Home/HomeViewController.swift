@@ -10,9 +10,10 @@ import UIKit
 import FoldingCell
 import SnapKit
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var users: [User] = []
+    @IBOutlet weak var tableView: UITableView!
     
     enum Const {
         static let closeCellHeight: CGFloat = 179
@@ -33,18 +34,18 @@ class HomeViewController: UITableViewController {
     
     // MARK: ===== Data Request =====
     @objc func getRecords() {
-        if let _ = self.refreshControl?.isRefreshing {
-            self.refreshControl?.attributedTitle = NSAttributedString.init(string: "加载中...")
+        if let _ = self.tableView.refreshControl?.isRefreshing {
+            self.tableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "加载中...")
         }
         NetworkClient.getRecords(success: { (userInfo) in
             self.users = userInfo
             self.cellHeights = Array(repeating: Const.closeCellHeight, count: self.users.count)
             self.tableView.reloadData()
-            self.refreshControl?.endRefreshing()
-            self.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
+            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         }) { (error) in
-            self.refreshControl?.endRefreshing()
-            self.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
+            self.tableView.refreshControl?.endRefreshing()
+            self.tableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         }
     }
     
@@ -88,7 +89,7 @@ class HomeViewController: UITableViewController {
         let refreshControl = UIRefreshControl.init()
         refreshControl.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         refreshControl.addTarget(self, action: #selector(getRecords), for: .valueChanged)
-        self.refreshControl = refreshControl
+        self.tableView.refreshControl = refreshControl
     }
     
     // MARK: ===== Action =====
@@ -125,20 +126,20 @@ class HomeViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return users.count
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeights[indexPath.row]
     }
     
-    override func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard case let cell as HomeCell  = cell else {
             return
         }
@@ -153,7 +154,7 @@ class HomeViewController: UITableViewController {
     }
 
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        let userInfo = users[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath) as! HomeCell
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
@@ -163,7 +164,7 @@ class HomeViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! HomeCell
         
@@ -190,13 +191,13 @@ class HomeViewController: UITableViewController {
     }
     
     // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             let userInfo = users[indexPath.row]
@@ -212,7 +213,7 @@ class HomeViewController: UITableViewController {
     }
 
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
         let fromIndex = fromIndexPath.row
         let toIndex = to.row
@@ -225,7 +226,7 @@ class HomeViewController: UITableViewController {
     }
 
     // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
