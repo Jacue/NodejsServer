@@ -34,9 +34,4 @@ class NetworkClient: NSObject {
     class func deleteRecord(params:[String: Int32] ,success:@escaping(_ response:[String: AnyObject])->(),failure:@escaping(_ error:Error)->()) {
         ApiBaseClient.shareInstance.deleteRequest(urlString: URLs.deleteRecord, params: params, success: success, failure: failure)
     }
-
-    class func updateRecordIndex(params:[String: Int] ,success:@escaping(_ response:[String: AnyObject])->(),failure:@escaping(_ error:Error)->()) {
-        ApiBaseClient.shareInstance.putRequest(urlString: URLs.exchangeRecord, params: params, success: success, failure: failure)
-    }
-
 }

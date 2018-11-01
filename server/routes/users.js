@@ -55,11 +55,10 @@ router.post("/addRecord", function(req, res, next) {
 
   sqlOperation(userSQL.queryAll, null, function(result){
     // 以json形式，把操作结果返回给前台页面
-    var count = result.data.length;
     var param = req.body;
     var moment = require('moment');
     var nowDate = moment().format('YYYY-MM-DD HH:mm:ss');
-    sqlOperation(userSQL.insert, [param.userName, param.schoolName, nowDate, count], function(result, err){
+    sqlOperation(userSQL.insert, [param.userName, param.schoolName, nowDate], function(result, err){
       // 以json形式，把操作结果返回给前台页面
       responseJSON(res, result);
     })
@@ -70,36 +69,6 @@ router.post("/addRecord", function(req, res, next) {
 router.delete("/deleteRecord", function(req, res, next) {
   var param = req.query;
   sqlOperation(userSQL.delete, [param.uid], function(result, err){
-    // 以json形式，把操作结果返回给前台页面
-    responseJSON(res, result);
-  })
-});
-
-router.put("/exchangeRecord", function(req, res, next) {
-  var param = req.body;
-  var fromIndex = param.fromIndex;
-  var toIndex = param.toIndex;
-
-  sqlOperation(userSQL.queryAll, null, function(result, err){
-    var records = result.data;
-    // 遍历数据，对区间内的数据进行移位
-    records.forEach(element => {
-      if (fromIndex < toIndex) { // 操作对象后移，区间内对象前移
-        if (element.sortIndex <= toIndex && element.sortIndex > fromIndex) {
-          var newIndex = element.sortIndex - 1;
-          sqlOperation(userSQL.exchange, [newIndex, element.uid], null)
-        } else if (element.sortIndex == fromIndex) {
-          sqlOperation(userSQL.exchange, [toIndex, element.uid], null)
-        }
-      } else { // 操作对象前移，区间内对象后移
-        if (element.sortIndex < fromIndex && element.sortIndex >= toIndex) {
-          var newIndex = element.sortIndex + 1;
-          sqlOperation(userSQL.exchange, [newIndex, element.uid], null)
-        } else if (element.sortIndex == fromIndex) {
-          sqlOperation(userSQL.exchange, [toIndex, element.uid], null)
-        }
-      }
-    });
     // 以json形式，把操作结果返回给前台页面
     responseJSON(res, result);
   })

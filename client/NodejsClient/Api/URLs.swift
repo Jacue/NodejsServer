@@ -13,5 +13,4 @@ class URLs: NSObject {
     static let records = "allRecords"
     static let addRecord = "addRecord"
     static let deleteRecord = "deleteRecord"
-    static let exchangeRecord = "exchangeRecord"
 }

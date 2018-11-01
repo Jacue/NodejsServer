@@ -61,13 +61,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: ===== UI Config =====
     func setupActionItems() {
-        let sortItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.organize, target: self, action: #selector(sortRecords))
-        self.navigationItem.leftBarButtonItem = sortItem
-
         let addItem = UIButton.init(type: .custom)
         addItem.setImage(UIImage.init(named: "add"), for: .normal)
         addItem.backgroundColor = UIColor.white
-        addItem.layer.cornerRadius = 15
+        addItem.layer.cornerRadius = 20
         addItem.layer.masksToBounds = true
         addItem.addTarget(self, action: #selector(addAction), for: .touchUpInside)
         self.view.addSubview(addItem)
@@ -92,9 +89,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // MARK: ===== Action =====
-    @objc func sortRecords() {
-        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-    }
     
     @objc func addAction() {
         let alertController = UIAlertController.init(title: "提示", message: nil, preferredStyle: .alert)
@@ -204,29 +198,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.deleteRecord(by: uid)
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
-
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-
-    // Override to support rearranging the table view.
-    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-        let fromIndex = fromIndexPath.row
-        let toIndex = to.row
-        let param = ["fromIndex": fromIndex, "toIndex": toIndex]
-        NetworkClient.updateRecordIndex(params: param, success: { (response) in
-            
-        }) { (error) in
-            
         }
-    }
-
-    // Override to support conditional rearranging of the table view.
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
     }
 
     /*
