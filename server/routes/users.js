@@ -1,4 +1,3 @@
-
 var express = require("express");
 var router = express.Router();
 
@@ -44,34 +43,36 @@ var sqlOperation = function(queryString, paramArr, finishBlock) {
 
 // 获取所有用户信息
 router.get("/allRecords", function(req, res, next) {
-  sqlOperation(userSQL.queryAll, null, function(result, err){
+  sqlOperation(userSQL.queryAll, null, function(result, err) {
     // 以json形式，把操作结果返回给前台页面
     responseJSON(res, result);
-  })
+  });
 });
 
 // 添加用户
 router.post("/addRecord", function(req, res, next) {
-
-  sqlOperation(userSQL.queryAll, null, function(result){
+  sqlOperation(userSQL.queryAll, null, function(result) {
     // 以json形式，把操作结果返回给前台页面
     var param = req.body;
-    var moment = require('moment');
-    var nowDate = moment().format('YYYY-MM-DD HH:mm:ss');
-    sqlOperation(userSQL.insert, [param.userName, param.schoolName, nowDate], function(result, err){
-      // 以json形式，把操作结果返回给前台页面
-      responseJSON(res, result);
-    })
-  })
-
+    var moment = require("moment");
+    var nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
+    sqlOperation(
+      userSQL.insert,
+      [param.userName, param.schoolName, nowDate],
+      function(result, err) {
+        // 以json形式，把操作结果返回给前台页面
+        responseJSON(res, result);
+      }
+    );
+  });
 });
 
 router.delete("/deleteRecord", function(req, res, next) {
   var param = req.query;
-  sqlOperation(userSQL.delete, [param.uid], function(result, err){
+  sqlOperation(userSQL.delete, [param.uid], function(result, err) {
     // 以json形式，把操作结果返回给前台页面
     responseJSON(res, result);
-  })
+  });
 });
 
 module.exports = router;

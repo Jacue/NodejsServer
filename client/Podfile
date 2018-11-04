@@ -6,9 +6,9 @@ target 'NodejsClient' do
   use_frameworks!
 
   # Pods for NodejsClient
-  pod 'Alamofire'
-  pod 'FoldingCell'
-  pod 'SnapKit'
+  pod 'Alamofire', '~> 4.7.3'
+  pod 'FoldingCell', '~> 3.1.2'
+  pod 'SnapKit', '~> 4.0.0'
   
   # Swift 版本声明
   post_install do |installer|

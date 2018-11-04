@@ -1,12 +1,12 @@
 PODS:
   - Alamofire (4.7.3)
-  - FoldingCell (3.1.2)
-  - SnapKit (4.0.0)
+  - FoldingCell (3.1.5)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
-  - Alamofire
-  - FoldingCell
-  - SnapKit
+  - Alamofire (~> 4.7.3)
+  - FoldingCell (~> 3.1.2)
+  - SnapKit (~> 4.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -16,9 +16,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  FoldingCell: e9b02668b89af673c377cb9560edcc4c6b293a95
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  FoldingCell: 0b0fe83d826634f6c79105330da5423832ea1340
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 301b2d738ed3f56cd372b2cd402fc232c7764c4a
+PODFILE CHECKSUM: a7bb99ae368b177aeb63243896561c06b57d9e82
 
 COCOAPODS: 1.5.3
