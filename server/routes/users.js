@@ -4,7 +4,7 @@ var router = express.Router();
 // 导入MySQL模块
 var mysql = require("mysql");
 var dbConfig = require("../db/DBConfig");
-var userSQL = require("../db/Usersql");
+var usersSQL = require("../db/Usersql");
 // 使用DBConfig.js的配置信息创建一个MySQL连接池
 var pool = mysql.createPool(dbConfig.mysql);
 // 响应一个JSON数据
@@ -43,35 +43,89 @@ var sqlOperation = function(queryString, paramArr, finishBlock) {
 
 // 获取所有用户信息
 router.get("/allRecords", function(req, res, next) {
-  sqlOperation(userSQL.queryAll, null, function(result, err) {
-    // 以json形式，把操作结果返回给前台页面
+  sqlOperation(usersSQL.queryAll, null, function(result, err) {
     responseJSON(res, result);
   });
 });
 
 // 添加用户
 router.post("/addRecord", function(req, res, next) {
-  sqlOperation(userSQL.queryAll, null, function(result) {
-    // 以json形式，把操作结果返回给前台页面
-    var param = req.body;
-    var moment = require("moment");
-    var nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
-    sqlOperation(
-      userSQL.insert,
-      [param.userName, param.schoolName, nowDate],
-      function(result, err) {
-        // 以json形式，把操作结果返回给前台页面
-        responseJSON(res, result);
-      }
-    );
-  });
+  var param = req.body;
+  var moment = require("moment");
+  var nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
+  sqlOperation(
+    usersSQL.insert,
+    [param.userName, param.schoolName, nowDate],
+    function(result, err) {
+      responseJSON(res, result);
+    }
+  );
 });
 
 router.delete("/deleteRecord", function(req, res, next) {
   var param = req.query;
-  sqlOperation(userSQL.delete, [param.uid], function(result, err) {
-    // 以json形式，把操作结果返回给前台页面
+  sqlOperation(usersSQL.delete, [param.uid], function(result, err) {
     responseJSON(res, result);
+  });
+});
+
+router.post("/register", function(req, res, next) {
+  var param = req.query;
+  sqlOperation(usersSQL.queryOne, [param.userName], function(result) {
+    if (result.data.length > 0){
+      result = {
+        code: 200,
+        msg: "帐号已存在，请直接登录",
+        data: null
+      };
+      responseJSON(res, result);
+    } else {
+      var moment = require("moment");
+      var nowDate = moment().format("YYYY-MM-DD HH:mm:ss");
+      sqlOperation(
+        usersSQL.insert,
+        [param.userName, param.password, nowDate],
+        function(result, err) {
+          if (!err) {  
+            sqlOperation(usersSQL.queryOne, [param.userName], function(result) {
+              if (result.data.length > 0) {
+                var retUser = result.data[0];
+                result = {
+                  code: 200,
+                  msg: "注册成功",
+                  data: retUser
+                };
+                responseJSON(res, result);  
+              }
+            });
+          }
+        }
+      );
+    }
+  });
+});
+
+router.post("/login", function(req, res, next) {
+  var param = req.query;
+  sqlOperation(usersSQL.checkLogin, [param.userName, param.password], function(result) {
+    if (result.data.length === 0){
+      result = {
+        code: 200,
+        msg: "帐号不存在，请先注册",
+        data: null
+      };
+      responseJSON(res, result);
+    } else {
+      if (result.data.length > 0) {
+        var retUser = result.data[0];
+        result = {
+          code: 200,
+          msg: "登录成功",
+          data: retUser
+        };
+        responseJSON(res, result);  
+      }
+    }
   });
 });
 
