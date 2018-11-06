@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Hjn-91-zV2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="86n-qR-114">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,7 +23,7 @@
         <!--首页-->
         <scene sceneID="Lr5-bO-Jww">
             <objects>
-                <viewController id="86n-qR-114" customClass="HomeViewController" customModule="NodejsClient" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="86n-qR-114" customClass="HomeViewController" customModule="NodejsClient" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JwA-oN-nPx"/>
                         <viewControllerLayoutGuide type="bottom" id="56q-6t-pLf"/>
@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTG-fT-PMn">
-                                <rect key="frame" x="0.0" y="64" width="600" height="744"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="788"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeCell" rowHeight="667" id="7es-kV-doV" customClass="HomeCell" customModule="NodejsClient" customModuleProvider="target">
@@ -726,6 +726,43 @@
             </objects>
             <point key="canvasLocation" x="857.60000000000002" y="-594.60269865067471"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="fZh-AS-Tfp">
+            <objects>
+                <viewController storyboardIdentifier="Menu" id="zvL-OC-XAv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qS8-8g-3gW"/>
+                        <viewControllerLayoutGuide type="bottom" id="X6O-k1-8Ei"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MpT-Xl-M4r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBE-eZ-lWT">
+                                <rect key="frame" x="137.5" y="54" width="100" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Q0Q-ZC-eZ7"/>
+                                    <constraint firstAttribute="height" constant="100" id="eFh-47-lhj"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="XBE-eZ-lWT" firstAttribute="top" secondItem="qS8-8g-3gW" secondAttribute="bottom" constant="34" id="TJz-MZ-eHK"/>
+                            <constraint firstItem="XBE-eZ-lWT" firstAttribute="centerX" secondItem="MpT-Xl-M4r" secondAttribute="centerX" id="hx8-OA-gJs"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O7A-co-H6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1170.4000000000001" y="-610.34482758620697"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="g9N-pV-Jxi">
             <objects>
@@ -734,9 +771,6 @@
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="86n-qR-114" kind="relationship" relationship="rootViewController" id="5OY-HO-mjE"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="duf-7u-Aeg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        // create viewController code...
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let mainViewController = storyboard.instantiateViewController(withIdentifier: "Home") as! HomeViewController
+        let leftViewController = storyboard.instantiateViewController(withIdentifier: "Menu")
+        
+        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        
+//        leftViewController.mainViewController = nvc
+//
+        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController, rightMenuViewController: UIViewController())
+        slideMenuController.automaticallyAdjustsScrollViewInsets = true
+        slideMenuController.delegate = (mainViewController as! SlideMenuControllerDelegate)
+        self.window?.rootViewController = mainViewController
+        self.window?.makeKeyAndVisible()
+
+        
         return true
     }
 
