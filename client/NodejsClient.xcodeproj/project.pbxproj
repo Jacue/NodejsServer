@@ -11,7 +11,6 @@
 		4B25F68E215A30CC009FA1B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F68D215A30CC009FA1B6 /* User.swift */; };
 		4B298EE7215B7E090099C98A /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B298EE6215B7E090099C98A /* HomeCell.swift */; };
 		4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C67A1215A076400A598E7 /* NetworkClient.swift */; };
-		4B62B7E321906EDE002E65B1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B62B7E221906EDE002E65B1 /* MenuViewController.swift */; };
 		4BC35313215A01E10079FE6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC35312215A01E10079FE6E /* AppDelegate.swift */; };
 		4BC35318215A01E10079FE6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC35316215A01E10079FE6E /* Main.storyboard */; };
 		4BC3531A215A01E30079FE6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC35319215A01E30079FE6E /* Assets.xcassets */; };
@@ -26,7 +25,6 @@
 		4B25F68D215A30CC009FA1B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4B298EE6215B7E090099C98A /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		4B4C67A1215A076400A598E7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
-		4B62B7E221906EDE002E65B1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		4BC3530F215A01E10079FE6E /* NodejsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodejsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC35312215A01E10079FE6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BC35317215A01E10079FE6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,14 +87,6 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
-		4B62B7E121906EC8002E65B1 /* Menu */ = {
-			isa = PBXGroup;
-			children = (
-				4B62B7E221906EDE002E65B1 /* MenuViewController.swift */,
-			);
-			path = Menu;
-			sourceTree = "<group>";
-		};
 		4BC35306215A01E10079FE6E = {
 			isa = PBXGroup;
 			children = (
@@ -118,7 +108,6 @@
 		4BC35311215A01E10079FE6E /* NodejsClient */ = {
 			isa = PBXGroup;
 			children = (
-				4B62B7E121906EC8002E65B1 /* Menu */,
 				4B25F68C215A309E009FA1B6 /* Home */,
 				4B4C67A0215A070D00A598E7 /* Api */,
 				4BC35312215A01E10079FE6E /* AppDelegate.swift */,
@@ -208,14 +197,12 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-NodejsClient/Pods-NodejsClient-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
-				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +242,6 @@
 				4BC35327215A02DE0079FE6E /* HomeViewController.swift in Sources */,
 				4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */,
 				4BC35329215A088E0079FE6E /* URLs.swift in Sources */,
-				4B62B7E321906EDE002E65B1 /* MenuViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
