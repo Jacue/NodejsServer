@@ -79,6 +79,14 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		4B37C47C2191D28600590F34 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				4B37C47A2191D02900590F34 /* SlideMenuController.swift */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
 		4B4C67A0215A070D00A598E7 /* Api */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,10 +118,10 @@
 		4BC35311215A01E10079FE6E /* NodejsClient */ = {
 			isa = PBXGroup;
 			children = (
+				4B37C47C2191D28600590F34 /* Libs */,
 				4B25F68C215A309E009FA1B6 /* Home */,
 				4B4C67A0215A070D00A598E7 /* Api */,
 				4BC35312215A01E10079FE6E /* AppDelegate.swift */,
-				4B37C47A2191D02900590F34 /* SlideMenuController.swift */,
 				4BC35316215A01E10079FE6E /* Main.storyboard */,
 				4BC35319215A01E30079FE6E /* Assets.xcassets */,
 				4BC3531B215A01E30079FE6E /* LaunchScreen.storyboard */,
