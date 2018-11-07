@@ -110,6 +110,13 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
+		4B62B7E92192D2B9002E65B1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		4BC35306215A01E10079FE6E = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +138,7 @@
 		4BC35311215A01E10079FE6E /* NodejsClient */ = {
 			isa = PBXGroup;
 			children = (
+				4B62B7E92192D2B9002E65B1 /* Extension */,
 				4B62B7E421927B6E002E65B1 /* Menu */,
 				4B37C47C2191D28600590F34 /* Libs */,
 				4B25F68C215A309E009FA1B6 /* Home */,

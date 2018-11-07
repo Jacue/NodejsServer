@@ -9,6 +9,12 @@
 import UIKit
 
 class MenuViewController: UIViewController {
+    
+    @IBOutlet weak var menuBgView: UIImageView!
+    @IBOutlet weak var menuBgViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var listView: UIView!
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,4 +33,16 @@ class MenuViewController: UIViewController {
     }
     */
 
+}
+
+
+extension MenuViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y < 0) {
+            menuBgViewHeight.constant = 150 + abs(scrollView.contentOffset.y)
+//            menuBgView.alpha = 0.6 + abs(scrollView.contentOffset.y) / 200.0 * 0.7
+            blurView.alpha = 1 - abs(scrollView.contentOffset.y) / 200.0
+        }
+    }
 }
