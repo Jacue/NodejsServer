@@ -61,6 +61,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: ===== UI Config =====
     func setupActionItems() {
+
+        self.addLeftBarButtonWithImage(UIImage(named: "user")!)
+        
         let addItem = UIButton.init(type: .custom)
         addItem.setImage(UIImage.init(named: "add"), for: .normal)
         addItem.backgroundColor = UIColor.white
