@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# OSX
-#
-.DS_Store
-
-# Xcode
-#
-build/
-=======
 
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
@@ -18,7 +9,6 @@ DerivedData/
 ## Various settings
 *.xcuserstate
 *.DS_Store
->>>>>>> master
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -27,35 +17,6 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-<<<<<<< HEAD
-xcuserdata
-*.xccheckout
-*.moved-aside
-DerivedData
-*.hmap
-*.ipa
-*.xcuserstate
-project.xcworkspace
-
-# Android/IntelliJ
-#
-build/
-.idea
-.gradle
-local.properties
-*.iml
-
-# node.js
-#
-node_modules/
-npm-debug.log
-yarn-error.log
-
-# BUCK
-buck-out/
-\.buckd/
-*.keystore
-=======
 xcuserdata/
 
 ## Other
@@ -77,6 +38,7 @@ xcuserdata/
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 Pods/
+Podfile.lock
 
 # Carthage
 #
@@ -84,23 +46,12 @@ Pods/
 # Carthage/Checkouts
 
 Carthage/Build
->>>>>>> master
 
 # fastlane
 #
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
-<<<<<<< HEAD
-# https://docs.fastlane.tools/best-practices/source-control/
-
-*/fastlane/report.xml
-*/fastlane/Preview.html
-*/fastlane/screenshots
-
-# Bundle artifact
-*.jsbundle
-=======
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
 fastlane/report.xml
@@ -117,4 +68,3 @@ fastlane/test_output
 *.DS_Store
 
 node_modules/
->>>>>>> master
