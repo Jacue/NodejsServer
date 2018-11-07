@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let leftViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "Menu")
         
         let slideMenuController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: leftViewController)
+        slideMenuController.delegate = mainViewController.viewControllers[0] as? SlideMenuControllerDelegate
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()

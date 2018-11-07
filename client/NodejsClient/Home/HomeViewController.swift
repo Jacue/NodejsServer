@@ -9,6 +9,7 @@
 import UIKit
 import FoldingCell
 import SnapKit
+import SlideMenuControllerSwift
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -214,4 +215,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     */
 
+}
+
+
+extension HomeViewController: SlideMenuControllerDelegate {
+    func leftDidOpen() {
+        print("leftDidOpen")
+
+        if let leftPanGes = self.slideMenuController()?.leftPanGesture {
+            self.slideMenuController()?.view.removeGestureRecognizer(leftPanGes)
+            self.slideMenuController()?.leftPanGesture = nil
+        }
+    }
+    
+    func leftDidClose() {
+        print("leftDidClose")
+        self.slideMenuController()?.addLeftGestures()
+    }
 }

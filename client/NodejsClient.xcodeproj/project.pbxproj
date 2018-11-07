@@ -10,7 +10,6 @@
 		4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */; };
 		4B25F68E215A30CC009FA1B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F68D215A30CC009FA1B6 /* User.swift */; };
 		4B298EE7215B7E090099C98A /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B298EE6215B7E090099C98A /* HomeCell.swift */; };
-		4B37C47B2191D02900590F34 /* SlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B37C47A2191D02900590F34 /* SlideMenuController.swift */; };
 		4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C67A1215A076400A598E7 /* NetworkClient.swift */; };
 		4B62B7E621927B84002E65B1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B62B7E521927B84002E65B1 /* MenuViewController.swift */; };
 		4B62B7E821927B93002E65B1 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B62B7E721927B93002E65B1 /* Menu.storyboard */; };
@@ -27,7 +26,6 @@
 		4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiBaseClient.swift; sourceTree = "<group>"; };
 		4B25F68D215A30CC009FA1B6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4B298EE6215B7E090099C98A /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
-		4B37C47A2191D02900590F34 /* SlideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideMenuController.swift; sourceTree = "<group>"; };
 		4B4C67A1215A076400A598E7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		4B62B7E521927B84002E65B1 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		4B62B7E721927B93002E65B1 /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 		4B37C47C2191D28600590F34 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				4B37C47A2191D02900590F34 /* SlideMenuController.swift */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -231,12 +228,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-NodejsClient/Pods-NodejsClient-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +275,6 @@
 				4B62B7E621927B84002E65B1 /* MenuViewController.swift in Sources */,
 				4BC35327215A02DE0079FE6E /* HomeViewController.swift in Sources */,
 				4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */,
-				4B37C47B2191D02900590F34 /* SlideMenuController.swift in Sources */,
 				4BC35329215A088E0079FE6E /* URLs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,10 +426,7 @@
 				DEVELOPMENT_TEAM = RSKK94MX83;
 				INFOPLIST_FILE = NodejsClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.Jacue.com.NodejsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -448,10 +443,7 @@
 				DEVELOPMENT_TEAM = RSKK94MX83;
 				INFOPLIST_FILE = NodejsClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.Jacue.com.NodejsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
