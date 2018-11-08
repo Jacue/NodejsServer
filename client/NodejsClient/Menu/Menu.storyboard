@@ -46,10 +46,17 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="40"/>
+                                                <integer key="value" value="8"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eal-b6-VAh">
+                                        <rect key="frame" x="10" y="10" width="70" height="70"/>
+                                        <connections>
+                                            <action selector="editHeadPortrait:" destination="FXp-Il-jbn" eventType="touchUpInside" id="TBf-bn-MfL"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kpY-SU-7MT">
                                         <rect key="frame" x="100" y="30" width="27" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -251,9 +258,11 @@
                                     <constraint firstItem="i43-Mq-MOH" firstAttribute="leading" secondItem="kpY-SU-7MT" secondAttribute="leading" id="2Gz-Jg-oI0"/>
                                     <constraint firstItem="i9n-sV-H3D" firstAttribute="top" secondItem="GiN-8H-FcP" secondAttribute="bottom" constant="20" id="4yU-a7-xfG"/>
                                     <constraint firstAttribute="trailing" secondItem="i9n-sV-H3D" secondAttribute="trailing" id="7wm-cz-xeY"/>
+                                    <constraint firstItem="Eal-b6-VAh" firstAttribute="trailing" secondItem="GiN-8H-FcP" secondAttribute="trailing" id="EVV-ms-Gzf"/>
                                     <constraint firstItem="ld2-SA-2Eo" firstAttribute="top" secondItem="xw8-sj-ST2" secondAttribute="top" id="Lkh-Pk-efw"/>
                                     <constraint firstItem="xw8-sj-ST2" firstAttribute="leading" secondItem="asf-dV-zQo" secondAttribute="leading" id="LxC-VL-xpq"/>
                                     <constraint firstItem="ld2-SA-2Eo" firstAttribute="bottom" secondItem="xw8-sj-ST2" secondAttribute="bottom" id="Mcf-ns-nb0"/>
+                                    <constraint firstItem="Eal-b6-VAh" firstAttribute="top" secondItem="GiN-8H-FcP" secondAttribute="top" id="Uya-va-MmC"/>
                                     <constraint firstAttribute="trailing" secondItem="xw8-sj-ST2" secondAttribute="trailing" id="c1c-ml-Saa"/>
                                     <constraint firstItem="kpY-SU-7MT" firstAttribute="leading" secondItem="GiN-8H-FcP" secondAttribute="trailing" constant="20" id="cHe-60-BJ0"/>
                                     <constraint firstItem="GiN-8H-FcP" firstAttribute="top" secondItem="asf-dV-zQo" secondAttribute="top" constant="10" id="gfr-Em-GXb"/>
@@ -264,6 +273,8 @@
                                     <constraint firstItem="i9n-sV-H3D" firstAttribute="leading" secondItem="asf-dV-zQo" secondAttribute="leading" id="pv7-HQ-KhP"/>
                                     <constraint firstItem="GiN-8H-FcP" firstAttribute="leading" secondItem="asf-dV-zQo" secondAttribute="leading" constant="10" id="ul2-bv-yiZ"/>
                                     <constraint firstItem="ld2-SA-2Eo" firstAttribute="trailing" secondItem="xw8-sj-ST2" secondAttribute="trailing" id="ves-B4-6oP"/>
+                                    <constraint firstItem="Eal-b6-VAh" firstAttribute="leading" secondItem="GiN-8H-FcP" secondAttribute="leading" id="xHt-jn-acL"/>
+                                    <constraint firstItem="Eal-b6-VAh" firstAttribute="bottom" secondItem="GiN-8H-FcP" secondAttribute="bottom" id="yAU-aE-QBQ"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="FXp-Il-jbn" id="e4G-e6-V33"/>
@@ -281,6 +292,7 @@
                     </view>
                     <connections>
                         <outlet property="blurView" destination="ld2-SA-2Eo" id="xek-4R-vIs"/>
+                        <outlet property="headPortrait" destination="GiN-8H-FcP" id="NPa-pW-GPD"/>
                         <outlet property="listView" destination="i9n-sV-H3D" id="lkr-YJ-ITC"/>
                         <outlet property="menuBgView" destination="xw8-sj-ST2" id="lq5-Ct-LhX"/>
                         <outlet property="menuBgViewHeight" destination="NEC-5r-aDU" id="7CN-8w-xJ1"/>
