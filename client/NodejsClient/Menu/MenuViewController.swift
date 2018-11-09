@@ -22,7 +22,7 @@ class MenuViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+        
     @IBAction func editHeadPortrait(_ sender: UIButton) {
         
         let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -49,6 +49,7 @@ class MenuViewController: UIViewController {
         alertController.addAction(action3)
         self.present(alertController, animated: true, completion: nil)
     }
+        
 }
 
 

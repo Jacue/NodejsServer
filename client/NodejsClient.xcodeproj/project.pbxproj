@@ -13,6 +13,8 @@
 		4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4C67A1215A076400A598E7 /* NetworkClient.swift */; };
 		4B62B7E621927B84002E65B1 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B62B7E521927B84002E65B1 /* MenuViewController.swift */; };
 		4B62B7E821927B93002E65B1 /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B62B7E721927B93002E65B1 /* Menu.storyboard */; };
+		4B62B7EF219567E8002E65B1 /* TouchExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B62B7EE219567E8002E65B1 /* TouchExtension.swift */; };
+		4B62B7F22195891E002E65B1 /* HighlightedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B62B7F12195891E002E65B1 /* HighlightedButton.swift */; };
 		4BC35313215A01E10079FE6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC35312215A01E10079FE6E /* AppDelegate.swift */; };
 		4BC35318215A01E10079FE6E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BC35316215A01E10079FE6E /* Main.storyboard */; };
 		4BC3531A215A01E30079FE6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BC35319215A01E30079FE6E /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 		4B62B7E721927B93002E65B1 /* Menu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		4B62B7EC21951250002E65B1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		4B62B7ED21951250002E65B1 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		4B62B7EE219567E8002E65B1 /* TouchExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchExtension.swift; sourceTree = "<group>"; };
+		4B62B7F12195891E002E65B1 /* HighlightedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightedButton.swift; sourceTree = "<group>"; };
 		4BC3530F215A01E10079FE6E /* NodejsClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NodejsClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC35312215A01E10079FE6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4BC35317215A01E10079FE6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -103,6 +107,7 @@
 		4B62B7E421927B6E002E65B1 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				4B62B7F0219588F2002E65B1 /* View */,
 				4B62B7E521927B84002E65B1 /* MenuViewController.swift */,
 				4B62B7E721927B93002E65B1 /* Menu.storyboard */,
 			);
@@ -112,8 +117,17 @@
 		4B62B7E92192D2B9002E65B1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4B62B7EE219567E8002E65B1 /* TouchExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		4B62B7F0219588F2002E65B1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B62B7F12195891E002E65B1 /* HighlightedButton.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		4BC35306215A01E10079FE6E = {
@@ -271,9 +285,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC35313215A01E10079FE6E /* AppDelegate.swift in Sources */,
+				4B62B7F22195891E002E65B1 /* HighlightedButton.swift in Sources */,
 				4B298EE7215B7E090099C98A /* HomeCell.swift in Sources */,
 				4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */,
 				4B25F68E215A30CC009FA1B6 /* User.swift in Sources */,
+				4B62B7EF219567E8002E65B1 /* TouchExtension.swift in Sources */,
 				4B62B7E621927B84002E65B1 /* MenuViewController.swift in Sources */,
 				4BC35327215A02DE0079FE6E /* HomeViewController.swift in Sources */,
 				4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */,
@@ -439,7 +455,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = test.Jacue.com.NodejsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -459,7 +475,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = test.Jacue.com.NodejsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
