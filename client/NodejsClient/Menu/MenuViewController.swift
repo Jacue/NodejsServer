@@ -12,15 +12,22 @@ class MenuViewController: UIViewController {
     
     @IBOutlet weak var menuBgView: UIImageView!
     @IBOutlet weak var menuBgViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var listView: UIView!
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var headPortrait: UIImageView!
     
+    @IBOutlet weak var mTableView: UITableView!
+    let cellIcons = [["favorites", "comment", "thumbs", "history"],["feedback", "setting"]]
+    let cellTitles = [["我的收藏", "我的评论", "我的点赞", "浏览历史"],["用户反馈", "系统设置"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.setupSubViews()
+    }
+    
+    func setupSubViews() {
+
     }
         
     @IBAction func editHeadPortrait(_ sender: UIButton) {
@@ -52,6 +59,41 @@ class MenuViewController: UIViewController {
         
 }
 
+extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 0
+        default:
+            return 10
+        }
+
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 4
+        default:
+            return 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
+        cell.icon.image = UIImage.init(named: cellIcons[indexPath.section][indexPath.row])
+        cell.titleLabel.text = cellTitles[indexPath.section][indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
 
 extension MenuViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
