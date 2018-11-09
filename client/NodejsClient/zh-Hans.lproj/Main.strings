@@ -1,0 +1,105 @@
+
+/* Class = "UINavigationItem"; title = "首页"; ObjectID = "1aK-B1-BNg"; */
+"1aK-B1-BNg.title" = "首页";
+
+/* Class = "UILabel"; text = "light"; ObjectID = "1m5-wc-RuV"; */
+"1m5-wc-RuV.text" = "light";
+
+/* Class = "UILabel"; text = "SENDER"; ObjectID = "2tq-ra-l5M"; */
+"2tq-ra-l5M.text" = "SENDER";
+
+/* Class = "UILabel"; text = "W 90th St"; ObjectID = "3I9-MD-IVJ"; */
+"3I9-MD-IVJ.text" = "W 90th St";
+
+/* Class = "UILabel"; text = "light"; ObjectID = "5mf-Od-WWx"; */
+"5mf-Od-WWx.text" = "light";
+
+/* Class = "UILabel"; text = "Edward Norton"; ObjectID = "7gM-aq-9bj"; */
+"7gM-aq-9bj.text" = "Edward Norton";
+
+/* Class = "UILabel"; text = "PLEDGE"; ObjectID = "8lD-oK-BZe"; */
+"8lD-oK-BZe.text" = "PLEDGE";
+
+/* Class = "UILabel"; text = "W 85th St, New York, 10024 "; ObjectID = "CRS-Xt-tOY"; */
+"CRS-Xt-tOY.text" = "W 85th St, New York, 10024 ";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "EyT-fW-7wR"; */
+"EyT-fW-7wR.text" = "2";
+
+/* Class = "UILabel"; text = "Woodside, NY 11101"; ObjectID = "Gxf-nc-k0l"; */
+"Gxf-nc-k0l.text" = "Woodside, NY 11101";
+
+/* Class = "UILabel"; text = "REQUESTS"; ObjectID = "K4X-Ji-Yog"; */
+"K4X-Ji-Yog.text" = "REQUESTS";
+
+/* Class = "UILabel"; text = "$25"; ObjectID = "K8w-cc-BM3"; */
+"K8w-cc-BM3.text" = "$25";
+
+/* Class = "UILabel"; text = "REQUEST DEADLINE"; ObjectID = "Mff-7h-487"; */
+"Mff-7h-487.text" = "REQUEST DEADLINE";
+
+/* Class = "UILabel"; text = "E 30th St, New York, 10016"; ObjectID = "Pk9-bV-ioN"; */
+"Pk9-bV-ioN.text" = "E 30th St, New York, 10016";
+
+/* Class = "UILabel"; text = "5 people have sent a request"; ObjectID = "R21-Z7-Pda"; */
+"R21-Z7-Pda.text" = "5 people have sent a request";
+
+/* Class = "UILabel"; text = "46th Ave"; ObjectID = "Tgj-Ez-hlb"; */
+"Tgj-Ez-hlb.text" = "46th Ave";
+
+/* Class = "UILabel"; text = "06:30 pm"; ObjectID = "XoL-XR-Pyc"; */
+"XoL-XR-Pyc.text" = "06:30 pm";
+
+/* Class = "UILabel"; text = "$150"; ObjectID = "aAC-y2-Qdd"; */
+"aAC-y2-Qdd.text" = "$150";
+
+/* Class = "UIButton"; normalTitle = "REQUEST"; ObjectID = "bRN-Hw-qYU"; */
+"bRN-Hw-qYU.normalTitle" = "REQUEST";
+
+/* Class = "UILabel"; text = "06:30 PM"; ObjectID = "fIF-Y6-itE"; */
+"fIF-Y6-itE.text" = "06:30 PM";
+
+/* Class = "UILabel"; text = "WEIGHT"; ObjectID = "gwN-bo-HpC"; */
+"gwN-bo-HpC.text" = "WEIGHT";
+
+/* Class = "UILabel"; text = "REQUESTS"; ObjectID = "iOn-47-Zmv"; */
+"iOn-47-Zmv.text" = "REQUESTS";
+
+/* Class = "UILabel"; text = "TO"; ObjectID = "kgc-2E-WPB"; */
+"kgc-2E-WPB.text" = "TO";
+
+/* Class = "UILabel"; text = "24 minutes"; ObjectID = "koi-HD-Kd0"; */
+"koi-HD-Kd0.text" = "24 minutes";
+
+/* Class = "UILabel"; text = "WEIGHT"; ObjectID = "qz0-nK-sHw"; */
+"qz0-nK-sHw.text" = "WEIGHT";
+
+/* Class = "UILabel"; text = "New York, NY 10025"; ObjectID = "rx0-zA-QAb"; */
+"rx0-zA-QAb.text" = "New York, NY 10025";
+
+/* Class = "UILabel"; text = "#25"; ObjectID = "rzt-kz-9Lb"; */
+"rzt-kz-9Lb.text" = "#25";
+
+/* Class = "UILabel"; text = "TODAY"; ObjectID = "tfA-8I-vgo"; */
+"tfA-8I-vgo.text" = "TODAY";
+
+/* Class = "UILabel"; text = "FROM"; ObjectID = "tlJ-qS-l7z"; */
+"tlJ-qS-l7z.text" = "FROM";
+
+/* Class = "UILabel"; text = "PLEDGE"; ObjectID = "vMW-hJ-vzb"; */
+"vMW-hJ-vzb.text" = "PLEDGE";
+
+/* Class = "UILabel"; text = "2"; ObjectID = "vyL-MY-46B"; */
+"vyL-MY-46B.text" = "2";
+
+/* Class = "UILabel"; text = "May 16, 2015"; ObjectID = "wxM-A6-ZYV"; */
+"wxM-A6-ZYV.text" = "May 16, 2015";
+
+/* Class = "UILabel"; text = "# 2618-3157"; ObjectID = "x3V-WR-f9c"; */
+"x3V-WR-f9c.text" = "# 2618-3157";
+
+/* Class = "UILabel"; text = "$150"; ObjectID = "xDD-7h-toa"; */
+"xDD-7h-toa.text" = "$150";
+
+/* Class = "UILabel"; text = "DELIVERY DATE"; ObjectID = "ya9-Bz-vAx"; */
+"ya9-Bz-vAx.text" = "DELIVERY DATE";
