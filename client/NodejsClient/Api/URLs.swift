@@ -14,3 +14,16 @@ class URLs: NSObject {
     static let addRecord = "addRecord"
     static let deleteRecord = "deleteRecord"
 }
+
+extension URLs {
+    static let novelBaseUrl = "https://www.apiopen.top/"
+    
+    /// 推荐小说
+    static let recommendNovel = "novelApi"
+    
+    /// 搜索小说
+    static let search = "novelSearchApi"
+    
+    /// 小说详情
+    static let novelInfo = "novelInfoApi"
+}

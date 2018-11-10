@@ -28,11 +28,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.setupActionItems()
         self.configTableView()
-        self.getRecords()
+        self.getRecommendNovels()
+        
+        
     }
     
     // MARK: ===== Data Request =====
-    @objc func getRecords() {
+    @objc func getRecommendNovels() {
+        NetworkClient.getCommendNovels(success: { (novelInfo) in
+            
+        }) { (error) in
+            
+        }
+    }
+    
+    func getRecords() {
         if let _ = self.tableView.refreshControl?.isRefreshing {
             self.tableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "加载中...")
         }
@@ -77,7 +87,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addItem.snp.makeConstraints { (make) in
             make.width.height.equalTo(40)
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(self.view).offset(-20)
+            make.bottom.equalTo(self.view).offset(-69)
         }
     }
     
@@ -88,7 +98,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         let refreshControl = UIRefreshControl.init()
         refreshControl.attributedTitle = NSAttributedString.init(string: "下拉刷新")
-        refreshControl.addTarget(self, action: #selector(getRecords), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(getRecommendNovels), for: .valueChanged)
         self.tableView.refreshControl = refreshControl
     }
     

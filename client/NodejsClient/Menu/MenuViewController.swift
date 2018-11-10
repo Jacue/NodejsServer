@@ -71,7 +71,10 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             return 10
         }
-
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

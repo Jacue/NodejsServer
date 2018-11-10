@@ -14,17 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainNav")
-            as! UINavigationController
+        let mainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTab")
+            as! UITabBarController
+        let mainNavigationController = mainViewController.viewControllers?[0] as! UINavigationController
         
         let leftViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "Menu")
         
         let slideMenuController = SlideMenuController(mainViewController: mainViewController, leftMenuViewController: leftViewController)
-        slideMenuController.delegate = mainViewController.viewControllers[0] as? SlideMenuControllerDelegate
+        slideMenuController.delegate = mainNavigationController.viewControllers[0] as? SlideMenuControllerDelegate
         self.window?.backgroundColor = UIColor.white
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()

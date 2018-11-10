@@ -35,3 +35,22 @@ class NetworkClient: NSObject {
         ApiBaseClient.shareInstance.deleteRequest(urlString: URLs.deleteRecord, params: params, success: success, failure: failure)
     }
 }
+
+
+extension NetworkClient {
+    class func getCommendNovels(success:@escaping(_ response: AnyObject)->(),failure:@escaping(_ error:Error)->()) {
+        ApiBaseClient.shareInstance.getRequest(urlString: URLs.recommendNovel, success: { (responseObj) in
+            if let arr = responseObj["data"] as? [[String: AnyObject]] {
+                guard let data = try? JSONSerialization.data(withJSONObject: arr) else {
+                    return
+                }
+//                guard let users = try? JSONDecoder().decode([User].self, from: data) else {
+//                    return
+//                }
+                success(data as AnyObject)
+            }
+        }) { (error) in
+            failure(error)
+        }
+    }
+}
