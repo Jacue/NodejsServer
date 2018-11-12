@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */; };
+		4B3FCB322199549D0072DD1E /* ConvertExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FCB312199549D0072DD1E /* ConvertExtesion.swift */; };
 		4B4A1E8C2195C09800FE49E6 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A1E8B2195C09800FE49E6 /* MenuCell.swift */; };
 		4B4A1E8F21967C4100FE49E6 /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A1E8E21967C4100FE49E6 /* NovelViewController.swift */; };
 		4B4A1E95219688B700FE49E6 /* NovelSearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A1E94219688B700FE49E6 /* NovelSearchResultController.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiBaseClient.swift; sourceTree = "<group>"; };
+		4B3FCB312199549D0072DD1E /* ConvertExtesion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConvertExtesion.swift; path = NodejsClient/Novel/ConvertExtesion.swift; sourceTree = SOURCE_ROOT; };
 		4B4A1E8B2195C09800FE49E6 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4B4A1E8E21967C4100FE49E6 /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		4B4A1E94219688B700FE49E6 /* NovelSearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelSearchResultController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		4B62B7E92192D2B9002E65B1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4B3FCB312199549D0072DD1E /* ConvertExtesion.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -254,14 +257,18 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NodejsClient/Pods-NodejsClient-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicColor/DynamicColor.framework",
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicColor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
@@ -300,6 +307,7 @@
 				4BBB6309219920F60048AF61 /* NovelCell.swift in Sources */,
 				4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */,
 				4B4A1E8C2195C09800FE49E6 /* MenuCell.swift in Sources */,
+				4B3FCB322199549D0072DD1E /* ConvertExtesion.swift in Sources */,
 				4B62B7E621927B84002E65B1 /* MenuViewController.swift in Sources */,
 				4BC35327215A02DE0079FE6E /* HomeViewController.swift in Sources */,
 				4B4C67A2215A076400A598E7 /* NetworkClient.swift in Sources */,

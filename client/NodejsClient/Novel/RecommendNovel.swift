@@ -16,7 +16,7 @@ struct RecommendNovel: Codable {
     let chapterid: String?
     let topic: String?
     let topic_first: String?
-    let date_updated: Double?
+    let date_updated: Int64?
     let author: String?
     let author_name: String?
     let top_class: String?

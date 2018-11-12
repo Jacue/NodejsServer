@@ -13,8 +13,8 @@ class NovelViewController: UIViewController {
     @IBOutlet weak var mTableView: UITableView!
     
     enum Const {
-        static let closeCellHeight: CGFloat = 179
-        static let openCellHeight: CGFloat = 488
+        static let closeCellHeight: CGFloat = 164
+        static let openCellHeight: CGFloat = 473
     }
     var cellHeights: [CGFloat] = []
     
@@ -38,7 +38,7 @@ class NovelViewController: UIViewController {
         self.configTableView()
         self.getRecommendNovels()
     }
-    
+        
     func configTableView() {
         mTableView.estimatedRowHeight = Const.closeCellHeight
         mTableView.rowHeight = UITableView.automaticDimension
@@ -78,12 +78,8 @@ extension NovelViewController: UISearchResultsUpdating, UISearchBarDelegate {
 }
 
 extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return recommendNovels.count
     }
     
@@ -108,6 +104,9 @@ extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as! NovelCell
+        let model = recommendNovels[indexPath.row]
+        cell.novelModel = model
+        
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations

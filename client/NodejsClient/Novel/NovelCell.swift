@@ -8,12 +8,41 @@
 
 import UIKit
 import FoldingCell
+import DynamicColor
+import Kingfisher
 
 class NovelCell: FoldingCell {
 
+    
+    @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var coverImageView: UIImageView!
+    @IBOutlet weak var bookNameLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var wordsNumLabel: UILabel!
+    @IBOutlet weak var updateDateLabel: UILabel!
+    
+    var novelModel: RecommendNovel? {
+        didSet {
+            coverImageView.kf.setImage(with: URL(string: (novelModel?.book_cover)!))
+            bookNameLabel.text = novelModel?.bookname
+            authorLabel.text = novelModel?.author_name
+            if let size = novelModel?.size {
+                wordsNumLabel.text = size.transform(by: .tenThousand) + "字"
+            }
+            updateDateLabel.text = novelModel?.date_updated?.getDateFromTimeStamp()
+        }
+    }
+    
     override func awakeFromNib() {
         foregroundView.layer.cornerRadius = 4
         foregroundView.layer.masksToBounds = true
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.cornerRadius = 4
+        gradientLayer.frame = gradientView.bounds
+        gradientLayer.colors = [UIColor(hexString: "#333333").cgColor, UIColor(hexString: "#999999").cgColor]
+        gradientView.layer.addSublayer(gradientLayer)
+        
         super.awakeFromNib()
     }
     
@@ -22,5 +51,4 @@ class NovelCell: FoldingCell {
         
         // Configure the view for the selected state
     }
-
 }
