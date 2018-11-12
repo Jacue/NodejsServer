@@ -11,6 +11,7 @@ import DynamicColor
 
 class NovelViewController: UIViewController {
 
+    // 推荐小说列表
     @IBOutlet weak var mTableView: UITableView!
     
     enum Const {
@@ -27,6 +28,7 @@ class NovelViewController: UIViewController {
         _searchController.searchResultsUpdater = self
         _searchController.searchBar.tintColor = UIColor(hexString: "#23A623")
         _searchController.searchBar.delegate = self
+        _searchController.dimsBackgroundDuringPresentation = false
         _searchController.searchBar.placeholder = "搜索小说"
         
         return _searchController
@@ -65,7 +67,7 @@ class NovelViewController: UIViewController {
             self.mTableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         }
     }
-
+    
     
 }
 
@@ -77,68 +79,101 @@ extension NovelViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("textDidChange")
     }
+    
 }
 
 extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recommendNovels.count
+        if !searchController.isActive {
+            return recommendNovels.count
+        }
+        return 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
+        if !searchController.isActive {
+            return cellHeights[indexPath.row]
+        }
+        return 44
     }
     
-    func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard case let cell as NovelCell  = cell else {
-            return
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if !searchController.isActive {
+            return 0.01
         }
-        
-        cell.backgroundColor = .clear
-        
-        if cellHeights[indexPath.row] == Const.closeCellHeight {
-            cell.unfold(false, animated: false, completion: nil)
-        } else {
-            cell.unfold(true, animated: false, completion: nil)
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if !searchController.isActive {
+            return nil
         }
+        return "搜索历史"
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !searchController.isActive {
+            guard case let cell as NovelCell  = cell else {
+                return
+            }
+            
+            cell.backgroundColor = .clear
+            
+            if cellHeights[indexPath.row] == Const.closeCellHeight {
+                cell.unfold(false, animated: false, completion: nil)
+            } else {
+                cell.unfold(true, animated: false, completion: nil)
+            }
+        }
+
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as! NovelCell
-        let model = recommendNovels[indexPath.row]
-        cell.novelModel = model
         
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
+        if !searchController.isActive {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as! NovelCell
+            let model = recommendNovels[indexPath.row]
+            cell.novelModel = model
+            
+            let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+            cell.durationsForExpandedState = durations
+            cell.durationsForCollapsedState = durations
+            
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchHisoryCell", for: indexPath)
+        cell.textLabel?.text = "搜索历史\(indexPath.row)"
         
         return cell
+
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cell = tableView.cellForRow(at: indexPath) as! NovelCell
-        
-        if cell.isAnimating() {
-            return
+        if !searchController.isActive {
+            let cell = tableView.cellForRow(at: indexPath) as! NovelCell
+            
+            if cell.isAnimating() { return }
+            
+            var duration = 0.0
+            let cellIsCollapsed = cellHeights[indexPath.row] == Const.closeCellHeight
+            if cellIsCollapsed {
+                cellHeights[indexPath.row] = Const.openCellHeight
+                cell.unfold(true, animated: true, completion: nil)
+                duration = 0.5
+            } else {
+                cellHeights[indexPath.row] = Const.closeCellHeight
+                cell.unfold(false, animated: true, completion: nil)
+                duration = 0.8
+            }
+            
+            UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }, completion: nil)
         }
-        
-        var duration = 0.0
-        let cellIsCollapsed = cellHeights[indexPath.row] == Const.closeCellHeight
-        if cellIsCollapsed {
-            cellHeights[indexPath.row] = Const.openCellHeight
-            cell.unfold(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {
-            cellHeights[indexPath.row] = Const.closeCellHeight
-            cell.unfold(false, animated: true, completion: nil)
-            duration = 0.8
-        }
-        
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }, completion: nil)
     }
 }

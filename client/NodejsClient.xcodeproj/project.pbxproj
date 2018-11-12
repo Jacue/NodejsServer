@@ -104,6 +104,16 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		4B3FCB38219981560072DD1E /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4B4A1E8D21967C2A00FE49E6 /* Novel */,
+				4B62B7E421927B6E002E65B1 /* Menu */,
+				4B25F68C215A309E009FA1B6 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		4B4A1E8D21967C2A00FE49E6 /* Novel */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,11 +174,9 @@
 		4BC35311215A01E10079FE6E /* NodejsClient */ = {
 			isa = PBXGroup;
 			children = (
+				4B3FCB38219981560072DD1E /* Modules */,
 				4B3FCB3321995F070072DD1E /* Extension */,
-				4B4A1E8D21967C2A00FE49E6 /* Novel */,
-				4B62B7E421927B6E002E65B1 /* Menu */,
 				4B37C47C2191D28600590F34 /* Libs */,
-				4B25F68C215A309E009FA1B6 /* Home */,
 				4B4C67A0215A070D00A598E7 /* Api */,
 				4BC35312215A01E10079FE6E /* AppDelegate.swift */,
 				4BC35316215A01E10079FE6E /* Main.storyboard */,
@@ -471,7 +479,10 @@
 				DEVELOPMENT_TEAM = RSKK94MX83;
 				INFOPLIST_FILE = NodejsClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = test.Jacue.com.NodejsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -490,7 +501,10 @@
 				DEVELOPMENT_TEAM = RSKK94MX83;
 				INFOPLIST_FILE = NodejsClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = test.Jacue.com.NodejsClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
