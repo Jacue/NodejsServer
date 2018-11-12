@@ -38,16 +38,16 @@ class NetworkClient: NSObject {
 
 
 extension NetworkClient {
-    class func getCommendNovels(success:@escaping(_ response: AnyObject)->(),failure:@escaping(_ error:Error)->()) {
+    class func getCommendNovels(success:@escaping(_ response: [RecommendNovel])->(),failure:@escaping(_ error:Error)->()) {
         ApiBaseClient.shareInstance.getRequest(urlString: URLs.recommendNovel, success: { (responseObj) in
             if let arr = responseObj["data"] as? [[String: AnyObject]] {
                 guard let data = try? JSONSerialization.data(withJSONObject: arr) else {
                     return
                 }
-//                guard let users = try? JSONDecoder().decode([User].self, from: data) else {
-//                    return
-//                }
-                success(data as AnyObject)
+                guard let recommendNovels = try? JSONDecoder().decode([RecommendNovel].self, from: data) else {
+                    return
+                }
+                success(recommendNovels)
             }
         }) { (error) in
             failure(error)

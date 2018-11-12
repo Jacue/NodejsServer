@@ -18,7 +18,7 @@ class ApiBaseClient: NSObject {
                     success:@escaping(_ response:[String:AnyObject])->(),
                     failure:@escaping(_ error:Error)->()) {
         
-        let PathUrl = URLs.baseUrl + urlString
+        let PathUrl = URLs.novelBaseUrl + urlString
         Alamofire.request(PathUrl, method: .get, parameters: params).responseJSON { (response) in
             switch response.result{
             case .success:
@@ -40,7 +40,7 @@ class ApiBaseClient: NSObject {
                      success:@escaping(_ response:[String:AnyObject])->(),
                      failure:@escaping(_ error:Error)->()) {
 
-        let PathUrl = URLs.baseUrl + urlString
+        let PathUrl = URLs.novelBaseUrl + urlString
         Alamofire.request(PathUrl, method: .post, parameters: params).responseJSON { (response) in
             switch response.result{
             case .success:
@@ -62,7 +62,7 @@ class ApiBaseClient: NSObject {
                      success:@escaping(_ response:[String:AnyObject])->(),
                      failure:@escaping(_ error:Error)->()) {
         
-        let PathUrl = URLs.baseUrl + urlString
+        let PathUrl = URLs.novelBaseUrl + urlString
         Alamofire.request(PathUrl, method: .delete, parameters: params).responseJSON { (response) in
             switch response.result{
             case .success:
@@ -84,7 +84,7 @@ class ApiBaseClient: NSObject {
                     success:@escaping(_ response:[String:AnyObject])->(),
                     failure:@escaping(_ error:Error)->()) {
         
-        let PathUrl = URLs.baseUrl + urlString
+        let PathUrl = URLs.novelBaseUrl + urlString
         Alamofire.request(PathUrl, method: .put, parameters: params).responseJSON { (response) in
             switch response.result{
             case .success:

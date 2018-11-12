@@ -12,23 +12,20 @@ class NovelViewController: UIViewController {
 
     @IBOutlet weak var mTableView: UITableView!
     
-    var searchController: UISearchController?
+    lazy var searchController: UISearchController = {
+        let nav = UINavigationController.init(rootViewController: NovelSearchResultController())
+        let _searchController = UISearchController.init(searchResultsController: nav)
+        _searchController.searchResultsUpdater = self
+        _searchController.searchBar.delegate = self
+        _searchController.searchBar.placeholder = "搜索小说"
+        
+        return _searchController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        let nav = UINavigationController.init(rootViewController: NovelSearchResultController())
-        searchController = UISearchController.init(searchResultsController: nav)
-        searchController!.searchResultsUpdater = self
-        searchController!.searchBar.delegate = self
-        searchController!.searchBar.placeholder = "搜索小说"
-        if #available(iOS 9.1, *) {
-            searchController?.obscuresBackgroundDuringPresentation = false
-        }
-        searchController?.dimsBackgroundDuringPresentation = false
-
-        self.mTableView.tableHeaderView = searchController!.searchBar
+        self.mTableView.tableHeaderView = searchController.searchBar
         
         self.mTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
