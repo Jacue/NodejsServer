@@ -29,7 +29,9 @@ class NovelCell: FoldingCell {
             if let size = novelModel?.size {
                 wordsNumLabel.text = size.transform(by: .tenThousand) + "字"
             }
-            updateDateLabel.text = novelModel?.date_updated?.getDateFromTimeStamp()
+            if let timeStamp = novelModel?.date_updated {
+                updateDateLabel.text = "最近更新: " + timeStamp.getDateFromTimeStamp()
+            }
         }
     }
     

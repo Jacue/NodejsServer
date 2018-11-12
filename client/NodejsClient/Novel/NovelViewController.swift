@@ -7,14 +7,15 @@
 //
 
 import UIKit
+import DynamicColor
 
 class NovelViewController: UIViewController {
 
     @IBOutlet weak var mTableView: UITableView!
     
     enum Const {
-        static let closeCellHeight: CGFloat = 164
-        static let openCellHeight: CGFloat = 473
+        static let closeCellHeight: CGFloat = 144
+        static let openCellHeight: CGFloat = 399
     }
     var cellHeights: [CGFloat] = []
     
@@ -24,6 +25,7 @@ class NovelViewController: UIViewController {
         let nav = UINavigationController.init(rootViewController: NovelSearchResultController())
         let _searchController = UISearchController.init(searchResultsController: nav)
         _searchController.searchResultsUpdater = self
+        _searchController.searchBar.tintColor = UIColor(hexString: "#23A623")
         _searchController.searchBar.delegate = self
         _searchController.searchBar.placeholder = "搜索小说"
         
