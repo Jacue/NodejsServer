@@ -26,17 +26,8 @@ class NovelSearchResultController: UIViewController {
             make.left.right.bottom.equalTo(view)
         }
         
-        self.getRecommendNovels()
     }
     
-    // MARK: ===== Data Request =====
-    @objc func getRecommendNovels() {
-        NetworkClient.getCommendNovels(success: { (novelInfo) in
-            
-        }) { (error) in
-            
-        }
-    }
 
 
     

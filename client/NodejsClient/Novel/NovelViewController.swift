@@ -12,6 +12,14 @@ class NovelViewController: UIViewController {
 
     @IBOutlet weak var mTableView: UITableView!
     
+    enum Const {
+        static let closeCellHeight: CGFloat = 179
+        static let openCellHeight: CGFloat = 488
+    }
+    var cellHeights: [CGFloat] = []
+    
+    var recommendNovels: [RecommendNovel] = []
+    
     lazy var searchController: UISearchController = {
         let nav = UINavigationController.init(rootViewController: NovelSearchResultController())
         let _searchController = UISearchController.init(searchResultsController: nav)
@@ -27,8 +35,35 @@ class NovelViewController: UIViewController {
 
         self.mTableView.tableHeaderView = searchController.searchBar
         
-        self.mTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.configTableView()
+        self.getRecommendNovels()
     }
+    
+    func configTableView() {
+        mTableView.estimatedRowHeight = Const.closeCellHeight
+        mTableView.rowHeight = UITableView.automaticDimension
+        self.mTableView.backgroundColor = UIColor(patternImage: UIImage.init(named: "background")!)
+        
+        let refreshControl = UIRefreshControl.init()
+        refreshControl.attributedTitle = NSAttributedString.init(string: "下拉刷新")
+        refreshControl.addTarget(self, action: #selector(getRecommendNovels), for: .valueChanged)
+        self.mTableView.refreshControl = refreshControl
+    }
+
+    // MARK: ===== Data Request =====
+    @objc func getRecommendNovels() {
+        NetworkClient.getCommendNovels(success: { (novels) in
+            self.recommendNovels = novels
+            self.cellHeights = Array(repeating: Const.closeCellHeight, count: self.recommendNovels.count)
+            self.mTableView.reloadData()
+            self.mTableView.refreshControl?.endRefreshing()
+            self.mTableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
+        }) { (error) in
+            self.mTableView.refreshControl?.endRefreshing()
+            self.mTableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
+        }
+    }
+
     
 }
 
@@ -43,13 +78,66 @@ extension NovelViewController: UISearchResultsUpdating, UISearchBarDelegate {
 }
 
 extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return recommendNovels.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath.row]
+    }
+    
+    func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard case let cell as NovelCell  = cell else {
+            return
+        }
+        
+        cell.backgroundColor = .clear
+        
+        if cellHeights[indexPath.row] == Const.closeCellHeight {
+            cell.unfold(false, animated: false, completion: nil)
+        } else {
+            cell.unfold(true, animated: false, completion: nil)
+        }
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "\(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as! NovelCell
+        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+        cell.durationsForExpandedState = durations
+        cell.durationsForCollapsedState = durations
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! NovelCell
+        
+        if cell.isAnimating() {
+            return
+        }
+        
+        var duration = 0.0
+        let cellIsCollapsed = cellHeights[indexPath.row] == Const.closeCellHeight
+        if cellIsCollapsed {
+            cellHeights[indexPath.row] = Const.openCellHeight
+            cell.unfold(true, animated: true, completion: nil)
+            duration = 0.5
+        } else {
+            cellHeights[indexPath.row] = Const.closeCellHeight
+            cell.unfold(false, animated: true, completion: nil)
+            duration = 0.8
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+        }, completion: nil)
     }
 }
