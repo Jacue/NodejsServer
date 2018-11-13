@@ -42,6 +42,9 @@ class NovelCell: FoldingCell {
     @IBOutlet weak var tagLabel3: UILabel!
     @IBOutlet weak var tagLabel4: UILabel!
     
+    var updatedTopicAction: (()->Void)?
+    var startReadingAction: (()->Void)?
+    
     lazy var gradientLayer: CAGradientLayer = {
         let _gradientLayer = CAGradientLayer()
         _gradientLayer.cornerRadius = 4
@@ -125,12 +128,18 @@ class NovelCell: FoldingCell {
     @IBAction func clickUpdatedTopic(_ sender: UIButton) {
         if let window = UIApplication.shared.delegate?.window {
             window!.makeToast("阅读最新章节", duration: 3.0, position: .center)
+            if updatedTopicAction != nil {
+                updatedTopicAction!()
+            }
         }
     }
     
     @IBAction func startReading(_ sender: UIButton) {
         if let window = UIApplication.shared.delegate?.window {
             window!.makeToast("开始阅读", duration: 3.0, position: .center)
+            if startReadingAction != nil {
+                startReadingAction!()
+            }
         }
     }
     

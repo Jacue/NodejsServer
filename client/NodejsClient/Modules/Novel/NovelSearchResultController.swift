@@ -16,6 +16,8 @@ class NovelSearchResultController: UIViewController {
         _mTableView.delegate = self
         _mTableView.dataSource = self
         _mTableView.backgroundColor = UIColor.red
+//        _mTableView.contentOffset = CGPoint.zero
+        _mTableView.tableHeaderView = nil
         _mTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return _mTableView
     }()
@@ -27,8 +29,7 @@ class NovelSearchResultController: UIViewController {
         
         self.view.addSubview(mTableView)
         mTableView.snp.makeConstraints { (make) in
-            make.top.equalTo(view).offset(64)
-            make.left.right.bottom.equalTo(view)
+            make.left.right.top.bottom.equalTo(view)
         }
         
     }

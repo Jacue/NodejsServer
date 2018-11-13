@@ -15,6 +15,7 @@ target 'NodejsClient' do
   pod 'DynamicColor', '~> 4.0.2'
   pod 'Kingfisher'
   pod 'Toast-Swift', '~> 4.0.0'
+  pod 'MJRefresh'
 
   # Swift 版本声明
   post_install do |installer|

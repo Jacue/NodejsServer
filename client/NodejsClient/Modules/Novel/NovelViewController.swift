@@ -13,6 +13,7 @@ class NovelViewController: UIViewController {
 
     // 推荐小说列表
     @IBOutlet weak var mTableView: UITableView!
+    @IBOutlet weak var hTableView: UITableView!
     
     enum Const {
         static let closeCellHeight: CGFloat = 144
@@ -23,14 +24,14 @@ class NovelViewController: UIViewController {
     var recommendNovels: [RecommendNovel] = []
     
     lazy var searchController: UISearchController = {
-        let nav = UINavigationController.init(rootViewController: NovelSearchResultController())
-        let _searchController = UISearchController.init(searchResultsController: nav)
-        _searchController.searchResultsUpdater = self
+        let _searchController = UISearchController.init(searchResultsController: nil)
+        _searchController.delegate = self
         _searchController.searchBar.tintColor = UIColor(hexString: "#23A623")
         _searchController.searchBar.delegate = self
         _searchController.dimsBackgroundDuringPresentation = false
         _searchController.searchBar.placeholder = "搜索小说"
-        
+        _searchController.hidesBottomBarWhenPushed = true
+
         return _searchController
     }()
     
@@ -46,7 +47,6 @@ class NovelViewController: UIViewController {
     func configTableView() {
         mTableView.estimatedRowHeight = Const.closeCellHeight
         mTableView.rowHeight = UITableView.automaticDimension
-        self.mTableView.backgroundColor = UIColor(patternImage: UIImage.init(named: "background")!)
         
         let refreshControl = UIRefreshControl.init()
         refreshControl.attributedTitle = NSAttributedString.init(string: "下拉刷新")
@@ -67,17 +67,26 @@ class NovelViewController: UIViewController {
             self.mTableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         }
     }
-    
-    
 }
 
-extension NovelViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-        print("updateSearchResults")
-    }
-    
+extension NovelViewController: UISearchBarDelegate, UISearchControllerDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("textDidChange")
+        hTableView.reloadData()
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        hTableView.isHidden = false
+        mTableView.isHidden = true
+        hTableView.reloadData()
+        self.navigationController?.tabBarController?.tabBar.isHidden = true
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        hTableView.isHidden = true
+        mTableView.isHidden = false
+        mTableView.reloadData()
+        self.navigationController?.tabBarController?.tabBar.isHidden = false
     }
     
 }
@@ -85,35 +94,35 @@ extension NovelViewController: UISearchResultsUpdating, UISearchBarDelegate {
 extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !searchController.isActive {
+        if tableView == mTableView {
             return recommendNovels.count
         }
         return 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if !searchController.isActive {
+        if tableView == mTableView {
             return cellHeights[indexPath.row]
         }
         return 44
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if !searchController.isActive {
+        if tableView == mTableView {
             return 0.01
         }
         return 40
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if !searchController.isActive {
-            return nil
+        if tableView == mTableView {
+            return ""
         }
-        return "搜索历史"
+        return searchController.searchBar.text != "" ? "搜索结果" : "搜索历史"
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if !searchController.isActive {
+        if tableView == mTableView {
             guard case let cell as NovelCell  = cell else {
                 return
             }
@@ -126,16 +135,20 @@ extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.unfold(true, animated: false, completion: nil)
             }
         }
-
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if !searchController.isActive {
+        if tableView == mTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NovelCell", for: indexPath) as! NovelCell
             let model = recommendNovels[indexPath.row]
             cell.novelModel = model
+            cell.startReadingAction = { () in
+                let webController = NovelWebController()
+                webController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(webController, animated: true)
+            }
             
             let durations: [TimeInterval] = [0.26, 0.2, 0.2]
             cell.durationsForExpandedState = durations
@@ -144,16 +157,15 @@ extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchHisoryCell", for: indexPath)
-        cell.textLabel?.text = "搜索历史\(indexPath.row)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchHisoryCell", for: indexPath) as! SearchHistoryCell
+        cell.searchTitle.text = "搜索历史\(indexPath.row)"
         
         return cell
-
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if !searchController.isActive {
+        if tableView == mTableView {
             let cell = tableView.cellForRow(at: indexPath) as! NovelCell
             
             if cell.isAnimating() { return }
@@ -174,6 +186,8 @@ extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
                 tableView.beginUpdates()
                 tableView.endUpdates()
             }, completion: nil)
+            return
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

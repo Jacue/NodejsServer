@@ -41,11 +41,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ajQ-Hf-C8x">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="23h-82-f1s">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchHisoryCell" id="mnf-bt-VYb">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SearchHisoryCell" id="mnf-bt-VYb" customClass="SearchHistoryCell" customModule="NodejsClient" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mnf-bt-VYb" id="rPo-UH-wDQ">
@@ -53,25 +53,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="zlU-gm-Yeb">
-                                                    <rect key="frame" x="15" y="10" width="24" height="24"/>
+                                                    <rect key="frame" x="15" y="12" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="8WM-Ym-eSj"/>
-                                                        <constraint firstAttribute="height" constant="24" id="hgz-6e-LcS"/>
+                                                        <constraint firstAttribute="width" constant="20" id="8WM-Ym-eSj"/>
+                                                        <constraint firstAttribute="height" constant="20" id="hgz-6e-LcS"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="upper" translatesAutoresizingMaskIntoConstraints="NO" id="heZ-bZ-Dcp">
-                                                    <rect key="frame" x="336" y="10" width="24" height="24"/>
+                                                    <rect key="frame" x="340" y="12" width="20" height="20"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="Fvn-31-JIf"/>
-                                                        <constraint firstAttribute="height" constant="24" id="tL5-IM-beb"/>
+                                                        <constraint firstAttribute="width" constant="20" id="Fvn-31-JIf"/>
+                                                        <constraint firstAttribute="height" constant="20" id="tL5-IM-beb"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜索历史" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdT-lw-DVp">
-                                                    <rect key="frame" x="54" y="13" width="61.5" height="18"/>
+                                                    <rect key="frame" x="50" y="13" width="61.5" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYC-70-Oqw">
+                                                    <rect key="frame" x="15" y="43.5" width="360" height="0.5"/>
+                                                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="UEN-QY-WTt"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="heZ-bZ-Dcp" secondAttribute="trailing" constant="15" id="2Nd-6b-MgB"/>
@@ -79,13 +86,29 @@
                                                 <constraint firstItem="zlU-gm-Yeb" firstAttribute="leading" secondItem="rPo-UH-wDQ" secondAttribute="leading" constant="15" id="IG7-Yo-Aor"/>
                                                 <constraint firstItem="vdT-lw-DVp" firstAttribute="leading" secondItem="zlU-gm-Yeb" secondAttribute="trailing" constant="15" id="JMc-yO-tfb"/>
                                                 <constraint firstItem="heZ-bZ-Dcp" firstAttribute="centerY" secondItem="rPo-UH-wDQ" secondAttribute="centerY" id="cJb-J9-NM5"/>
+                                                <constraint firstAttribute="bottom" secondItem="hYC-70-Oqw" secondAttribute="bottom" id="hWK-lc-P19"/>
+                                                <constraint firstItem="hYC-70-Oqw" firstAttribute="leading" secondItem="rPo-UH-wDQ" secondAttribute="leading" constant="15" id="kEG-ji-GI0"/>
                                                 <constraint firstItem="heZ-bZ-Dcp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vdT-lw-DVp" secondAttribute="trailing" constant="15" id="mP1-5g-Pqx"/>
                                                 <constraint firstItem="vdT-lw-DVp" firstAttribute="centerY" secondItem="rPo-UH-wDQ" secondAttribute="centerY" id="nA5-ys-yO8"/>
+                                                <constraint firstAttribute="trailing" secondItem="hYC-70-Oqw" secondAttribute="trailing" id="tqE-99-tQf"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="searchTitle" destination="vdT-lw-DVp" id="vJP-BO-dBK"/>
+                                        </connections>
                                     </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="gF1-yh-Dv5" id="gEI-Ec-fAq"/>
+                                    <outlet property="delegate" destination="gF1-yh-Dv5" id="KLb-5X-Bb0"/>
+                                </connections>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ajQ-Hf-C8x">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NovelCell" rowHeight="667" id="Kyp-tg-vwM" customClass="NovelCell" customModule="NodejsClient" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="667"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kyp-tg-vwM" id="jjy-CR-nGx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -586,13 +609,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ajQ-Hf-C8x" firstAttribute="leading" secondItem="hya-Yv-XXK" secondAttribute="leading" id="GJB-md-CPs"/>
+                            <constraint firstItem="23h-82-f1s" firstAttribute="top" secondItem="ajQ-Hf-C8x" secondAttribute="top" id="PZW-ek-Pza"/>
+                            <constraint firstItem="23h-82-f1s" firstAttribute="bottom" secondItem="ajQ-Hf-C8x" secondAttribute="bottom" id="Xvf-X9-F94"/>
                             <constraint firstAttribute="trailing" secondItem="ajQ-Hf-C8x" secondAttribute="trailing" id="ZCS-J1-FNN"/>
                             <constraint firstItem="ajQ-Hf-C8x" firstAttribute="top" secondItem="VlA-Jn-iEr" secondAttribute="bottom" id="cF5-Qg-7MN"/>
+                            <constraint firstItem="23h-82-f1s" firstAttribute="leading" secondItem="ajQ-Hf-C8x" secondAttribute="leading" id="npQ-8G-ddU"/>
+                            <constraint firstItem="23h-82-f1s" firstAttribute="trailing" secondItem="ajQ-Hf-C8x" secondAttribute="trailing" id="rvI-y9-YrD"/>
                             <constraint firstItem="DFz-tt-Fja" firstAttribute="top" secondItem="ajQ-Hf-C8x" secondAttribute="bottom" id="uLy-g4-AlP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="小说" id="s9K-Wa-wib"/>
                     <connections>
+                        <outlet property="hTableView" destination="23h-82-f1s" id="Op3-mh-gWM"/>
                         <outlet property="mTableView" destination="ajQ-Hf-C8x" id="IGx-hr-cBP"/>
                     </connections>
                 </viewController>

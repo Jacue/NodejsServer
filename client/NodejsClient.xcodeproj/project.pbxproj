@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */; };
 		4B3FCB3721995F2D0072DD1E /* ConvertExtesion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FCB3621995F2D0072DD1E /* ConvertExtesion.swift */; };
+		4B3FCB3C219A9B360072DD1E /* SearchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FCB3B219A9B360072DD1E /* SearchHistoryCell.swift */; };
+		4B3FCB3E219A9FA70072DD1E /* NovelWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FCB3D219A9FA70072DD1E /* NovelWebController.swift */; };
 		4B4A1E8C2195C09800FE49E6 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A1E8B2195C09800FE49E6 /* MenuCell.swift */; };
 		4B4A1E8F21967C4100FE49E6 /* NovelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A1E8E21967C4100FE49E6 /* NovelViewController.swift */; };
 		4B4A1E95219688B700FE49E6 /* NovelSearchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4A1E94219688B700FE49E6 /* NovelSearchResultController.swift */; };
@@ -29,6 +31,8 @@
 /* Begin PBXFileReference section */
 		4B25F689215A2BB7009FA1B6 /* ApiBaseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiBaseClient.swift; sourceTree = "<group>"; };
 		4B3FCB3621995F2D0072DD1E /* ConvertExtesion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertExtesion.swift; sourceTree = "<group>"; };
+		4B3FCB3B219A9B360072DD1E /* SearchHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryCell.swift; sourceTree = "<group>"; };
+		4B3FCB3D219A9FA70072DD1E /* NovelWebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelWebController.swift; sourceTree = "<group>"; };
 		4B4A1E8B2195C09800FE49E6 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		4B4A1E8E21967C4100FE49E6 /* NovelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewController.swift; sourceTree = "<group>"; };
 		4B4A1E94219688B700FE49E6 /* NovelSearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelSearchResultController.swift; sourceTree = "<group>"; };
@@ -118,9 +122,11 @@
 			isa = PBXGroup;
 			children = (
 				4B4A1E8E21967C4100FE49E6 /* NovelViewController.swift */,
+				4B3FCB3D219A9FA70072DD1E /* NovelWebController.swift */,
 				4B4A1E94219688B700FE49E6 /* NovelSearchResultController.swift */,
 				4BBB6306219916B60048AF61 /* RecommendNovel.swift */,
 				4BBB6308219920F60048AF61 /* NovelCell.swift */,
+				4B3FCB3B219A9B360072DD1E /* SearchHistoryCell.swift */,
 			);
 			path = Novel;
 			sourceTree = "<group>";
@@ -268,6 +274,7 @@
 				"${BUILT_PRODUCTS_DIR}/DynamicColor/DynamicColor.framework",
 				"${BUILT_PRODUCTS_DIR}/FoldingCell/FoldingCell.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
@@ -278,6 +285,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicColor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FoldingCell.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
@@ -313,6 +321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC35313215A01E10079FE6E /* AppDelegate.swift in Sources */,
+				4B3FCB3E219A9FA70072DD1E /* NovelWebController.swift in Sources */,
 				4B4A1E8F21967C4100FE49E6 /* NovelViewController.swift in Sources */,
 				4BBB6309219920F60048AF61 /* NovelCell.swift in Sources */,
 				4B25F68A215A2BB7009FA1B6 /* ApiBaseClient.swift in Sources */,
@@ -323,6 +332,7 @@
 				4B3FCB3721995F2D0072DD1E /* ConvertExtesion.swift in Sources */,
 				4BBB6307219916B60048AF61 /* RecommendNovel.swift in Sources */,
 				4B4A1E95219688B700FE49E6 /* NovelSearchResultController.swift in Sources */,
+				4B3FCB3C219A9B360072DD1E /* SearchHistoryCell.swift in Sources */,
 				4BC35329215A088E0079FE6E /* URLs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
