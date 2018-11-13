@@ -21,7 +21,10 @@ class NovelViewController: UIViewController {
     }
     var cellHeights: [CGFloat] = []
     
+    // 推荐小说
     var recommendNovels: [RecommendNovel] = []
+    // 搜索结果
+    var searchResult: [String] = []
     
     lazy var searchController: UISearchController = {
         let _searchController = UISearchController.init(searchResultsController: nil)
@@ -67,12 +70,21 @@ class NovelViewController: UIViewController {
             self.mTableView.refreshControl?.attributedTitle = NSAttributedString.init(string: "下拉刷新")
         }
     }
+    
+    @objc func searchNovels(keyword: String) {
+        NetworkClient.searchNovels(keyword: keyword, success: { result in
+            self.searchResult = result
+            self.hTableView.reloadData()
+        }) { (error) in
+            print(error)
+        }
+    }
 }
 
 extension NovelViewController: UISearchBarDelegate, UISearchControllerDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("textDidChange")
-        hTableView.reloadData()
+        searchNovels(keyword: searchText)
     }
     
     func didPresentSearchController(_ searchController: UISearchController) {
@@ -97,7 +109,7 @@ extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
         if tableView == mTableView {
             return recommendNovels.count
         }
-        return 2
+        return searchController.searchBar.text != "" ? searchResult.count : 2
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -146,6 +158,8 @@ extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
             cell.novelModel = model
             cell.startReadingAction = { () in
                 let webController = NovelWebController()
+                webController.bid = model.bid ?? ""
+                webController.title = model.bookname
                 webController.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(webController, animated: true)
             }
@@ -158,7 +172,7 @@ extension NovelViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchHisoryCell", for: indexPath) as! SearchHistoryCell
-        cell.searchTitle.text = "搜索历史\(indexPath.row)"
+        cell.searchTitle.text = searchController.searchBar.text != "" ? searchResult[indexPath.row] : "搜索历史\(indexPath.row)"
         
         return cell
     }

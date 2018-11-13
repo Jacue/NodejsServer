@@ -37,4 +37,16 @@ extension NetworkClient {
             failure(error)
         }
     }
+    
+    class func searchNovels(keyword: String, success:@escaping(_ response: [String])->(),failure:@escaping(_ error:Error)->()) {
+        let searchUrl = (URLs.search + keyword).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        ApiBaseClient.shareInstance.getRequest(urlString: searchUrl, success: { (responseObj) in
+            if let arr = responseObj["data"] as? [String] {
+                success(arr)
+            }
+        }) { (error) in
+            failure(error)
+        }
+    }
+
 }

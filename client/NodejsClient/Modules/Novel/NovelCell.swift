@@ -126,20 +126,14 @@ class NovelCell: FoldingCell {
     }
     
     @IBAction func clickUpdatedTopic(_ sender: UIButton) {
-        if let window = UIApplication.shared.delegate?.window {
-            window!.makeToast("阅读最新章节", duration: 3.0, position: .center)
-            if updatedTopicAction != nil {
-                updatedTopicAction!()
-            }
+        if updatedTopicAction != nil {
+            updatedTopicAction!()
         }
     }
     
     @IBAction func startReading(_ sender: UIButton) {
-        if let window = UIApplication.shared.delegate?.window {
-            window!.makeToast("开始阅读", duration: 3.0, position: .center)
-            if startReadingAction != nil {
-                startReadingAction!()
-            }
+        if startReadingAction != nil {
+            startReadingAction!()
         }
     }
     

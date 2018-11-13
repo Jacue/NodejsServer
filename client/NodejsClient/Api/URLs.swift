@@ -22,7 +22,7 @@ extension URLs {
     static let recommendNovel = "novelApi"
     
     /// 搜索小说
-    static let search = "novelSearchApi"
+    static let search = "novelSearchApi?name="
     
     /// 小说详情
     static let novelInfo = "novelInfoApi"
